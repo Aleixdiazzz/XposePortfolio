@@ -1,0 +1,333 @@
+---
+import '../../styles/global.css';
+
+interface Artist {
+	id: number;
+	name: string;
+	surname: string;
+	artisticName: string;
+	about: string;
+	contactInformation: {
+		id: number;
+		email: string;
+		phoneNumber: string;
+		address: {
+			id: number;
+			street: string;
+			number: string;
+			city: string;
+			postalCode: string;
+			country: string;
+		};
+	};
+}
+
+interface Serie {
+	id: number;
+	name: string;
+	description: string;
+	active: boolean;
+	artists: Artist[];
+}
+
+interface Asset {
+	id: number;
+	name: string;
+	description: string;
+	type: string;
+	comment: string | null;
+	url: string;
+	active: boolean;
+	authors: Artist[];
+	series: Serie[];
+}
+
+interface Collection {
+	serie: Serie;
+	assets: Asset[];
+	imageUrl: string;
+}
+
+interface WebSiteSettings {
+	id: number;
+	name: string;
+	websiteName: string;
+	favIconUrl: string;
+	contactInformation: {
+		email: string;
+		phoneNumber: string;
+		address: {
+			street: string;
+			number: string;
+			city: string;
+			postalCode: string;
+			country: string;
+		};
+	};
+}
+
+export async function getStaticPaths() {
+	try {
+		const collectionsResponse = await fetch('http://api.xpose.es/series/public-collections');
+		if (!collectionsResponse.ok) {
+			throw new Error(`HTTP error! status: ${collectionsResponse.status}`);
+		}
+		const collections: Collection[] = await collectionsResponse.json();
+		
+		return collections.map(collection => {
+			return {
+				params: { collection: collection.serie.id.toString() },
+				props: { collection }
+			};
+		});
+	} catch (error) {
+		console.error('Error fetching collections:', error);
+		return [];
+	}
+}
+
+const { collection } = Astro.props;
+
+if (!collection) {
+	return Astro.redirect('/404');
+}
+
+let websiteSettings: WebSiteSettings;
+try {
+	const settingsResponse = await fetch('http://api.xpose.es/website-settings/contact');
+	if (!settingsResponse.ok) {
+		throw new Error(`HTTP error! status: ${settingsResponse.status}`);
+	}
+	websiteSettings = await settingsResponse.json();
+} catch (error) {
+	console.error('Error fetching website settings:', error);
+	return Astro.redirect('/404');
+}
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
+		<title>{collection.serie.name} - {websiteSettings.name}</title>
+	</head>
+	<body class="bg-white dark:bg-gray-900">
+		<!-- Header -->
+		<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+			<nav class="max-w-7xl mx-auto px-6 py-8">
+				<div class="flex justify-between items-center">
+					<a href="/" class="text-black dark:text-white text-xl tracking-wide">{websiteSettings.name}</a>
+					<div class="space-x-8">
+						<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+						<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+						<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Main Content -->
+		<main class="pt-32">
+			<!-- Hero Section -->
+			<div class="relative h-screen">
+				<img 
+					src={collection.imageUrl} 
+					alt={collection.serie.name}
+					class="w-full h-full object-cover"
+				/>
+				<div class="absolute inset-0 flex items-center">
+					<div class="max-w-7xl mx-auto px-6 w-full">
+						<h1 class="title-font text-6xl md:text-8xl text-white mb-8">
+							{collection.serie.name}
+						</h1>
+						<p class="text-white/90 text-xl md:text-2xl max-w-2xl font-light mb-6">
+							{collection.serie.description}
+						</p>
+						<div class="text-white/80">
+							<p class="text-sm uppercase tracking-widest mb-2">Featured Artists</p>
+							<p class="text-lg">
+								{collection.serie.artists.map((artist, i) => (
+									`${artist.name} ${artist.surname}${i < collection.serie.artists.length - 1 ? ', ' : ''}`
+								))}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Gallery Section -->
+			<div class="py-16">
+				<div class="max-w-6xl mx-auto px-6">
+					<div class="flex flex-col gap-4">
+						{collection.assets.map((asset, index) => {
+							// If index is even, it's a full-width image
+							// If index is odd, it's part of a two-image row
+							const isFullWidth = index % 3 === 0;
+							
+							// If it's a full-width image or the first image of a two-image row
+							if (isFullWidth || index % 3 === 1) {
+								return (
+									<div class={`flex gap-4 ${isFullWidth ? 'w-full' : ''}`}>
+										<div class={`group cursor-pointer ${isFullWidth ? 'w-full' : 'w-1/2'}`}>
+											<div class="relative overflow-hidden h-[500px]">
+												<span class="absolute top-4 left-4 z-10 text-sm text-white/80">
+													{(index + 1).toString().padStart(2, '0')}
+												</span>
+												<img
+													src={asset.url}
+													alt={asset.name}
+													class="gallery-image w-full h-full object-cover"
+												/>
+											</div>
+										</div>
+										{/* If it's the first image of a two-image row, render the second image */}
+										{!isFullWidth && index + 1 < collection.assets.length && (
+											<div class="group cursor-pointer w-1/2">
+												<div class="relative overflow-hidden h-[500px]">
+													<span class="absolute top-4 left-4 z-10 text-sm text-white/80">
+														{(index + 2).toString().padStart(2, '0')}
+													</span>
+													<img
+														src={collection.assets[index + 1].url}
+														alt={collection.assets[index + 1].name}
+														class="gallery-image w-full h-full object-cover"
+													/>
+												</div>
+											</div>
+										)}
+									</div>
+								);
+							}
+							// Skip rendering for the second image of a two-image row as it's already rendered above
+							return null;
+						})}
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Modal -->
+		<div id="imageModal" class="fixed inset-0 z-50 hidden opacity-0 transition-all duration-500 ease-in-out bg-black/60">
+			<div class="h-full w-full flex items-center justify-center p-4">
+				<img id="modalImage" src="" alt="" class="max-h-full max-w-full object-contain opacity-0 transition-opacity duration-500 ease-in-out" />
+			</div>
+			<!-- Navigation buttons -->
+			<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-8">
+				<button id="prevButton" class="text-white/80 hover:text-white transition-colors">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+					</svg>
+				</button>
+				<span id="imageCounter" class="text-white/80 text-sm tracking-wider"></span>
+				<button id="nextButton" class="text-white/80 hover:text-white transition-colors">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+					</svg>
+				</button>
+			</div>
+		</div>
+
+		<script>
+			function initModal() {
+				const modal = document.getElementById('imageModal') as HTMLElement;
+				const modalImg = document.getElementById('modalImage') as HTMLImageElement;
+				const prevButton = document.getElementById('prevButton') as HTMLButtonElement;
+				const nextButton = document.getElementById('nextButton') as HTMLButtonElement;
+				const imageCounter = document.getElementById('imageCounter') as HTMLElement;
+				const images = document.querySelectorAll('.gallery-image');
+				let currentImageIndex = 0;
+
+				if (!modal || !modalImg || !prevButton || !nextButton || !imageCounter) return;
+
+				function updateNavigationButtons() {
+					prevButton.style.opacity = currentImageIndex === 0 ? '0.3' : '0.8';
+					nextButton.style.opacity = currentImageIndex === images.length - 1 ? '0.3' : '0.8';
+					prevButton.style.pointerEvents = currentImageIndex === 0 ? 'none' : 'auto';
+					nextButton.style.pointerEvents = currentImageIndex === images.length - 1 ? 'none' : 'auto';
+					// Update the counter
+					imageCounter.textContent = `${(currentImageIndex + 1).toString().padStart(2, '0')}/${images.length.toString().padStart(2, '0')}`;
+				}
+
+				function openModal(imgSrc: string, index: number) {
+					currentImageIndex = index;
+					modalImg.src = imgSrc;
+					modal.classList.remove('hidden');
+					updateNavigationButtons();
+					// First fade in the background
+					requestAnimationFrame(() => {
+						modal.classList.remove('opacity-0');
+						// Then fade in the image after a short delay
+						setTimeout(() => {
+							modalImg.classList.remove('opacity-0');
+						}, 100);
+					});
+					document.body.style.overflow = 'hidden';
+				}
+
+				function closeModal() {
+					// First fade out the image
+					modalImg.classList.add('opacity-0');
+					// Then fade out the background
+					setTimeout(() => {
+						modal.classList.add('opacity-0');
+						setTimeout(() => {
+							modal.classList.add('hidden');
+							document.body.style.overflow = 'auto';
+							modalImg.src = '';
+						}, 500);
+					}, 300);
+				}
+
+				function showNextImage() {
+					if (currentImageIndex < images.length - 1) {
+						const nextImg = images[currentImageIndex + 1] as HTMLImageElement;
+						openModal(nextImg.src, currentImageIndex + 1);
+					}
+				}
+
+				function showPrevImage() {
+					if (currentImageIndex > 0) {
+						const prevImg = images[currentImageIndex - 1] as HTMLImageElement;
+						openModal(prevImg.src, currentImageIndex - 1);
+					}
+				}
+
+				// Add click event to all images
+				images.forEach((img, index) => {
+					if (img instanceof HTMLImageElement) {
+						img.addEventListener('click', () => openModal(img.src, index));
+					}
+				});
+
+				// Navigation button clicks
+				prevButton.addEventListener('click', showPrevImage);
+				nextButton.addEventListener('click', showNextImage);
+
+				// Click outside image
+				modal.addEventListener('click', (e) => {
+					// Check if the click was on the modal background (not the image)
+					if (e.target === modal || e.target === modal.querySelector('div')) {
+						closeModal();
+					}
+				});
+
+				// Keyboard navigation
+				document.addEventListener('keydown', (e) => {
+					if (!modal.classList.contains('hidden')) {
+						if (e.key === 'Escape') {
+							closeModal();
+						} else if (e.key === 'ArrowLeft') {
+							showPrevImage();
+						} else if (e.key === 'ArrowRight') {
+							showNextImage();
+						}
+					}
+				});
+			}
+
+			// Initialize when DOM is loaded
+			document.addEventListener('DOMContentLoaded', initModal);
+		</script>
+	</body>
+</html> 

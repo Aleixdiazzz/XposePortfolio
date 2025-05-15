@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+
+interface WebSiteSettings {
+	id: number;
+	name: string;
+	websiteName: string;
+	favIconUrl: string;
+	contactInformation: {
+		email: string;
+		phoneNumber: string;
+		address: {
+			street: string;
+			number: string;
+			city: string;
+			postalCode: string;
+			country: string;
+		};
+	};
+}
+
+const response = await fetch('http://api.xpose.es/website-settings/contact');
+const websiteSettings: WebSiteSettings = await response.json();
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
+		<title>{websiteSettings.name}</title>
+	</head>
+	<body class="bg-black">
+		<!-- Header -->
+		<header class="fixed top-0 left-0 right-0 z-50">
+			<nav class="max-w-7xl mx-auto px-6 py-8">
+				<div class="flex justify-between items-center">
+					<a href="/" class="text-white text-xl tracking-wide">{websiteSettings.name}</a>
+					<div class="space-x-8">
+						<a href="/collections" class="text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+						<a href="/artists" class="text-white hover:opacity-70 transition-opacity tracking-wide">Authors</a>
+						<a href="/contact" class="text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Main Content -->
+		<main class="h-screen relative">
+			<!-- Background Image with Overlay -->
+			<div class="absolute inset-0 bg-black/30 z-10"></div>
+			<div class="absolute inset-0 bg-[url('https://minioApi.xpose.es/images/back.jpg')] bg-cover bg-center"></div>
+			
+			<!-- Title -->
+			<div class="relative z-20 h-full flex items-center justify-center">
+				<h1 class="title-font text-3xl md:text-3xl lg:text-3xl text-white">
+					{websiteSettings.websiteName}
+				</h1>
+			</div>
+		</main>
+	</body>
+</html>
+

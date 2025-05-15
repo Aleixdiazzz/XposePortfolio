@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+
+
+interface WebSiteSettings {
+	id: number;
+	name: string;
+	websiteName: string;
+	favIconUrl: string;
+	contactInformation: {
+		email: string;
+		phoneNumber: string;
+		address: {
+			street: string;
+			number: string;
+			city: string;
+			postalCode: string;
+			country: string;
+		};
+	};
+}
+
+const response = await fetch('http://api.xpose.es/website-settings/contact');
+const websiteSettings: WebSiteSettings = await response.json();
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
+		<title>{websiteSettings.name}</title>
+	</head>
+	<body class="bg-white dark:bg-gray-900">
+		<!-- Header -->
+		<header class="fixed top-0 left-0 right-0 z-50">
+			<nav class="max-w-7xl mx-auto px-6 py-8">
+				<div class="flex justify-between items-center">
+					<a href="/" class="text-black text-xl tracking-wide dark:text-white">{websiteSettings.name}</a>
+					<div class="space-x-8">
+						<a href="/collections" class="text-black hover:opacity-70 transition-opacity tracking-wide dark:text-white">Collections</a>
+						<a href="/artists" class="text-black hover:opacity-70 transition-opacity tracking-wide dark:text-white">Authors</a>
+						<a href="/contact" class="text-black hover:opacity-70 transition-opacity tracking-wide dark:text-white">Contact</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Main Content -->
+		<main class="h-screen flex">
+			<!-- Left Side - Image -->
+			<div class="w-1/2 h-screen">
+				<div class="h-full bg-[url('src/assets/contact.jpg')] bg-cover bg-center"></div>
+			</div>
+
+			<!-- Right Side - Contact Info -->
+			<div class="w-1/2 h-screen flex items-center">
+				<div class="px-16 max-w-xl">
+					<h1 class="title-font text-4xl mb-12 dark:text-white">Contact</h1>
+					
+					<div class="space-y-8">
+						<div>
+							<h2 class="text-sm uppercase tracking-widest mb-2 dark:text-gray-400">Email</h2>
+							<a href="mailto:info@studio54.com" class="text-black dark:text-white hover:opacity-70 transition-opacity">
+								{websiteSettings.contactInformation.email}
+							</a>
+						</div>
+
+						<div>
+							<h2 class="text-sm uppercase tracking-widest mb-2 dark:text-gray-400">Phone</h2>
+							<a href="tel:+1234567890" class="text-black dark:text-white hover:opacity-70 transition-opacity">
+								{websiteSettings.contactInformation.phoneNumber}
+							</a>
+						</div>
+
+						<div>
+							<h2 class="text-sm uppercase tracking-widest mb-2 dark:text-gray-400">Location</h2>
+							<p class="text-black dark:text-white">
+								{websiteSettings.contactInformation.address.number} {websiteSettings.contactInformation.address.street}<br />
+								{websiteSettings.contactInformation.address.city}, {websiteSettings.contactInformation.address.postalCode}<br />
+								{websiteSettings.contactInformation.address.country}
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html> 
