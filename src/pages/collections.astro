@@ -81,9 +81,9 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
 		<title>Collections - {websiteSettings.name}</title>
 	</head>
-	<body class="bg-white dark:bg-gray-900">
+	<body class="bg-white dark:bg-black">
 		<!-- Header -->
-		<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+		<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-sm">
 			<nav class="max-w-7xl mx-auto px-6 py-8">
 				<div class="flex justify-between items-center">
 					<a href="/" class="text-black dark:text-white text-xl tracking-wide">{websiteSettings.name}</a>

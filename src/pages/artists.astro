@@ -69,12 +69,12 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 		</header>
 
 		<!-- Main Content -->
-		<main class="min-h-screen flex dark:bg-gray-900">
+		<main class="min-h-screen flex dark:bg-black">
 			<!-- Artists List -->
             <div class="w-1/2 p-8 pt-32 flex flex-col items-end text-right">
                 
     
-                <div class="space-y-24 w-1/2 mb-24 bg-white dark:bg-gray-900" style="margin-left: 35%; z-index: 100;">
+                <div class="space-y-24 w-1/2 mb-24 bg-white dark:bg-black" style="margin-left: 35%; z-index: 100;">
                    <h1 class="title-font text-4xl mb-12 w-fit dark:text-white">Our Authors</h1>
                   {artists.map((artist) => (
                     <div class="artist-card group text-right" data-artist-id={artist.id}>
