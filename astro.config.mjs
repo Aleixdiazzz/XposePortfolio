@@ -2,10 +2,18 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
+import node from '@astrojs/node';
+
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
   image: {
     domains: ['minioApi.xpose.es'],
   },
-  integrations: [tailwind()]
+
+  integrations: [tailwind()],
+
+  adapter: node({
+    mode: 'standalone'
+  })
 });
