@@ -1,25 +1,23 @@
-# Stage 1: Build the Astro site
-FROM node:18-alpine AS builder
+# Use Node 20 Alpine image
+FROM node:20-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy package.json and package-lock.json (if exists)
 COPY package*.json ./
-RUN npm install
 
+# Install dependencies
+RUN npm install --production
+
+# Copy rest of your source code
 COPY . .
 
+# Build Astro app
 RUN npm run build
 
-# Stage 2: Serve with a lightweight web server
-FROM node:18-alpine
-
-WORKDIR /app
-
-# Install a static file server
-RUN npm install -g serve
-
-COPY --from=builder /app/dist ./dist
-
+# Expose port 3000 (default for Node adapter)
 EXPOSE 3000
 
-CMD ["serve", "dist", "-l", "3000"]
+# Start the server
+CMD ["node", "dist/server/entry.mjs"]
