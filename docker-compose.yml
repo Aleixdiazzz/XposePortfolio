@@ -6,17 +6,14 @@ services:
       dockerfile: Dockerfile
     container_name: astro-container
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    network_mode: "host"
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   caddy:
     image: caddy:alpine
     container_name: caddy
-    ports:
-      - "80:80"
-      - "443:443"
+    network_mode: "host"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
