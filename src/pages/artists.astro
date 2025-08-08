@@ -56,20 +56,20 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 	<body class="bg-white">
 
 	<!-- Header -->
-	<header class="fixed top-0 left-0 right-0 z-50">
+	<header class="fixed top-0 left-0 right-0 z-50 ">
 		<nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
 			<div class="flex justify-between items-center">
-				<a href="/" class="text-black dark:text-white text-lg sm:text-xl tracking-wide">{websiteSettings.name}</a>
+				<a href="/" class="text-white text-lg sm:text-xl md:text-black tracking-wide">{websiteSettings.name}</a>
 
 				<!-- Desktop Navigation -->
 				<div class="hidden md:flex space-x-8">
-					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
-					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
-					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+					<a href="/collections" class="text-black hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+					<a href="/artists" class="text-black hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+					<a href="/contact" class="text-black hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 
 				<!-- Mobile Menu Button -->
-				<button id="mobile-menu-button" class="md:hidden text-black dark:text-white">
+				<button id="mobile-menu-button" class="md:hidden text-white">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
@@ -77,33 +77,43 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 			</div>
 
 			<!-- Mobile Navigation Menu -->
-			<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+			<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
 				<div class="flex flex-col space-y-4 pt-4">
-					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
-					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
-					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+					<a href="/collections" class="text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+					<a href="/artists" class="text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+					<a href="/contact" class="text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 			</div>
 		</nav>
 	</header>
 
 		<!-- Main Content -->
-		<main class="min-h-screen flex dark:bg-black">
+		<main class="min-h-screen flex flex-col lg:flex-row dark:bg-black relative">
+			<!-- Mobile Background Image -->
+			<div class="lg:hidden fixed inset-0 z-0">
+				<img 
+					id="mobileArtistImage"
+					src='assets/artists.jpg'
+					alt="Artist Portrait"
+					class="w-full h-full object-cover"
+				/>
+				<div class="absolute inset-0 bg-black/40"></div>
+			</div>
+
 			<!-- Artists List -->
-            <div class="w-1/2 p-8 pt-32 flex flex-col items-end text-right">
+            <div class="w-full lg:w-1/2 p-4 sm:p-8 pt-24 sm:pt-32 lg:pt-32 flex flex-col items-center lg:items-end text-center lg:text-right relative z-10 min-h-screen lg:min-h-0 justify-center lg:justify-start">
                 
-    
-                <div class="space-y-24 w-1/2 mb-24 bg-white dark:bg-black" style="margin-left: 35%; z-index: 100;">
-                   <h1 class="title-font text-4xl mb-12 w-fit dark:text-white">Our Authors</h1>
+                <div class="space-y-12 sm:space-y-24 w-full lg:w-1/2 mb-12 sm:mb-24 bg-transparent lg:bg-white dark:lg:bg-black lg:ml-[35%] z-10 lg:z-100 max-w-md lg:max-w-none">
+                   <h1 class="title-font text-2xl sm:text-4xl mb-6 sm:mb-12 w-fit text-white lg:text-black dark:lg:text-white mx-auto lg:mx-0">Our Authors</h1>
                   {artists.map((artist) => (
-                    <div class="artist-card group text-right" data-artist-id={artist.id}>
-                      <div class="mb-6">
-                        <h2 class="text-3xl font-light tracking-wide mb-4 dark:text-white">
+                    <div class="artist-card group text-center lg:text-right lg:bg-transparent lg:backdrop-blur-none rounded-lg lg:rounded-none p-4 lg:p-0" data-artist-id={artist.id}>
+                      <div class="mb-4 sm:mb-6">
+                        <h2 class="text-xl sm:text-3xl font-light tracking-wide mb-2 sm:mb-4 text-white lg:text-black dark:lg:text-white">
                           {artist.name} {artist.surname}
                         </h2>
-                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{artist.about}</p>
+                        <p class="text-gray-200 lg:text-gray-600 dark:lg:text-gray-300 leading-relaxed text-sm sm:text-base">{artist.about}</p>
                       </div>
-                      <div class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                      <div class="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-300 lg:text-gray-500 dark:lg:text-gray-400">
                         <p>{artist.contactInformation.email}</p>
                         <p>{artist.contactInformation.phoneNumber}</p>
                         <p>{artist.contactInformation.address.street} {artist.contactInformation.address.number}, {artist.contactInformation.address.city}, {artist.contactInformation.address.postalCode}, {artist.contactInformation.address.country}</p>
@@ -113,12 +123,8 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
                 </div>
             </div>
               
-              
-              
-              
-
-			<!-- Artist Image -->
-			<div class="w-1/2 fixed right-0 top-0 h-screen">
+			<!-- Desktop Artist Image -->
+			<div class="hidden lg:block lg:w-1/2 lg:fixed lg:right-0 lg:top-0 lg:h-screen">
 				<div class="h-full w-full">
 					<img 
 						id="artistImage"
