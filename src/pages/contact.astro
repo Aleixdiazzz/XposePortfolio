@@ -33,19 +33,37 @@ const websiteSettings: WebSiteSettings = await response.json();
 		<title>{websiteSettings.name}</title>
 	</head>
 	<body class="bg-white dark:bg-black">
-		<!-- Header -->
-		<header class="fixed top-0 left-0 right-0 z-50">
-			<nav class="max-w-7xl mx-auto px-6 py-8">
-				<div class="flex justify-between items-center">
-					<a href="/" class="text-black text-xl tracking-wide dark:text-white">{websiteSettings.name}</a>
-					<div class="space-x-8">
-						<a href="/collections" class="text-black hover:opacity-70 transition-opacity tracking-wide dark:text-white">Collections</a>
-						<a href="/artists" class="text-black hover:opacity-70 transition-opacity tracking-wide dark:text-white">Authors</a>
-						<a href="/contact" class="text-black hover:opacity-70 transition-opacity tracking-wide dark:text-white">Contact</a>
-					</div>
+	<!-- Header -->
+	<header class="fixed top-0 left-0 right-0 z-50">
+		<nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+			<div class="flex justify-between items-center">
+				<a href="/" class="text-black dark:text-white text-lg sm:text-xl tracking-wide">{websiteSettings.name}</a>
+
+				<!-- Desktop Navigation -->
+				<div class="hidden md:flex space-x-8">
+					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
-			</nav>
-		</header>
+
+				<!-- Mobile Menu Button -->
+				<button id="mobile-menu-button" class="md:hidden text-black dark:text-white">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+			</div>
+
+			<!-- Mobile Navigation Menu -->
+			<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+				<div class="flex flex-col space-y-4 pt-4">
+					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+				</div>
+			</div>
+		</nav>
+	</header>
 
 		<!-- Main Content -->
 		<main class="h-screen flex">
@@ -87,5 +105,19 @@ const websiteSettings: WebSiteSettings = await response.json();
 				</div>
 			</div>
 		</main>
+
+	<!-- Mobile Menu JavaScript -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const mobileMenuButton = document.getElementById('mobile-menu-button');
+			const mobileMenu = document.getElementById('mobile-menu');
+
+			if (mobileMenuButton && mobileMenu) {
+				mobileMenuButton.addEventListener('click', function() {
+					mobileMenu.classList.toggle('hidden');
+				});
+			}
+		});
+	</script>
 	</body>
 </html> 
