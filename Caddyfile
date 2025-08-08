@@ -1,0 +1,3 @@
+xpose.es {
+    reverse_proxy astro:80
+}
