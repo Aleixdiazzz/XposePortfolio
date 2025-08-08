@@ -1,3 +1,0 @@
-xpose.es {
-  reverse_proxy astro:4321
-}

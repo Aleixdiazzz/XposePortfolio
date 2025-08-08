@@ -1,19 +1,23 @@
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
+# Use Node 20 Alpine image
 FROM node:20-alpine
 
+# Set working directory
 WORKDIR /app
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package*.json ./
 
+# Copy package.json and package-lock.json (if exists)
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install --production
 
+# Copy rest of your source code
+COPY . .
+
+# Build Astro app
+RUN npm run build
+
+# Expose port 3000 (default for Node adapter)
 EXPOSE 3000
 
+# Start the server
 CMD ["node", "dist/server/entry.mjs"]
