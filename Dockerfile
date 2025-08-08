@@ -1,13 +1,20 @@
-# Stage 1: Build Astro site
-FROM node:20 AS builder
+FROM node:20-alpine AS builder
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve with Nginx
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:20-alpine
+
+WORKDIR /app
+COPY --from=builder /app/dist/server ./dist/server
+COPY --from=builder /app/dist/client ./dist/client
+COPY --from=builder /app/package*.json ./
+
+RUN npm install --production
+
+EXPOSE 3000
+
+CMD ["node", "dist/server/index.js"]

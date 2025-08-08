@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     container_name: astro-container
     restart: unless-stopped
+    ports:
+      - "3000:3000"
 
   caddy:
     image: caddy:alpine
