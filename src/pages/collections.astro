@@ -67,10 +67,10 @@ interface WebSiteSettings {
 	};
 }
 
-const collectionsResponse = await fetch('https://api.xpose.es/series/public-collections');
+const collectionsResponse = await fetch('http://46.62.130.142:8080/series/public-collections');
 const collections: Collection[] = await collectionsResponse.json();
 
-const settingsResponse = await fetch('https://api.xpose.es/website-settings/contact');
+const settingsResponse = await fetch('http://46.62.130.142:8080/website-settings/contact');
 const websiteSettings: WebSiteSettings = await settingsResponse.json();
 ---
 

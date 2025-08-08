@@ -19,7 +19,7 @@ interface WebSiteSettings {
 	};
 }
 
-const response = await fetch('http://api.xpose.es/website-settings/contact');
+const response = await fetch('http://46.62.130.142:8080/website-settings/contact');
 const websiteSettings: WebSiteSettings = await response.json();
 ---
 
@@ -49,7 +49,7 @@ const websiteSettings: WebSiteSettings = await response.json();
 		<main class="h-screen relative">
 			<!-- Background Image with Overlay -->
 			<div class="absolute inset-0 bg-black/30 z-10"></div>
-			<div class="absolute inset-0 bg-[url('https://minioApi.xpose.es/images/back.jpg')] bg-cover bg-center"></div>
+			<div class="absolute inset-0 bg-[url('http://46.62.130.142:9000/images/back.jpg')] bg-cover bg-center"></div>
 			
 			<!-- Title -->
 			<div class="relative z-20 h-full flex items-center justify-center">
