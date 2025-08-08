@@ -34,20 +34,20 @@ const websiteSettings: WebSiteSettings = await response.json();
 	</head>
 	<body class="bg-white dark:bg-black">
 	<!-- Header -->
-	<header class="fixed top-0 left-0 right-0 z-50">
+	<header class="fixed top-0 left-0 right-0 z-50 ">
 		<nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
 			<div class="flex justify-between items-center">
-				<a href="/" class="text-black dark:text-white text-lg sm:text-xl tracking-wide">{websiteSettings.name}</a>
+				<a href="/" class="text-white text-lg sm:text-xl md:text-black tracking-wide">{websiteSettings.name}</a>
 
 				<!-- Desktop Navigation -->
 				<div class="hidden md:flex space-x-8">
-					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
-					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
-					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+					<a href="/collections" class="text-black hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+					<a href="/artists" class="text-black hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+					<a href="/contact" class="text-black hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 
 				<!-- Mobile Menu Button -->
-				<button id="mobile-menu-button" class="md:hidden text-black dark:text-white">
+				<button id="mobile-menu-button" class="md:hidden text-white">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
@@ -55,52 +55,57 @@ const websiteSettings: WebSiteSettings = await response.json();
 			</div>
 
 			<!-- Mobile Navigation Menu -->
-			<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+			<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
 				<div class="flex flex-col space-y-4 pt-4">
-					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
-					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
-					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+					<a href="/collections" class="text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+					<a href="/artists" class="text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+					<a href="/contact" class="text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 			</div>
 		</nav>
 	</header>
 
 		<!-- Main Content -->
-		<main class="h-screen flex">
-			<!-- Left Side - Image -->
-			<div class="w-1/2 h-screen">
+		<main class="h-screen flex flex-col lg:flex-row relative">
+			<!-- Mobile Background Image -->
+			<div class="lg:hidden fixed inset-0 z-0">
+				<div class="h-full bg-[url('/assets/contact.jpg')] bg-cover bg-center"></div>
+				<div class="absolute inset-0 bg-black/40"></div>
+			</div>
+
+			<!-- Desktop Left Side - Image -->
+			<div class="hidden lg:block lg:w-1/2 h-screen">
 				<div class="h-full bg-[url('/assets/contact.jpg')] bg-cover bg-center"></div>
 			</div>
 
-			<!-- Right Side - Contact Info -->
-			<div class="w-1/2 h-screen flex items-center">
-				<div class="px-16 max-w-xl">
-					<h1 class="title-font text-4xl mb-12 dark:text-white">Contact</h1>
+			<!-- Contact Info -->
+			<div class="w-full lg:w-1/2 h-screen flex items-center justify-center lg:justify-start relative z-10">
+				<div class="px-4 sm:px-8 lg:px-16 max-w-md lg:max-w-xl text-center lg:text-left">
+					<h1 class="title-font text-2xl sm:text-4xl mb-8 sm:mb-12 text-white lg:text-black lg:dark:text-white">Contact</h1>
 					
-					<div class="space-y-8">
+					<div class="space-y-6 sm:space-y-8">
 						<div>
-							<h2 class="text-sm uppercase tracking-widest mb-2 dark:text-gray-400">Email</h2>
-							<a href="mailto:info@studio54.com" class="text-black dark:text-white hover:opacity-70 transition-opacity">
+							<h2 class="text-xs sm:text-sm uppercase tracking-widest mb-2 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400">Email</h2>
+							<a href="mailto:{websiteSettings.contactInformation.email}" class="text-white lg:text-black lg:dark:text-white hover:opacity-70 transition-opacity text-sm sm:text-base">
 								{websiteSettings.contactInformation.email}
 							</a>
 						</div>
 
 						<div>
-							<h2 class="text-sm uppercase tracking-widest mb-2 dark:text-gray-400">Phone</h2>
-							<a href="tel:+1234567890" class="text-black dark:text-white hover:opacity-70 transition-opacity">
+							<h2 class="text-xs sm:text-sm uppercase tracking-widest mb-2 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400">Phone</h2>
+							<a href="tel:{websiteSettings.contactInformation.phoneNumber}" class="text-white lg:text-black lg:dark:text-white hover:opacity-70 transition-opacity text-sm sm:text-base">
 								{websiteSettings.contactInformation.phoneNumber}
 							</a>
 						</div>
 
 						<div>
-							<h2 class="text-sm uppercase tracking-widest mb-2 dark:text-gray-400">Location</h2>
-							<p class="text-black dark:text-white">
+							<h2 class="text-xs sm:text-sm uppercase tracking-widest mb-2 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400">Location</h2>
+							<p class="text-white lg:text-black lg:dark:text-white text-sm sm:text-base">
 								{websiteSettings.contactInformation.address.number} {websiteSettings.contactInformation.address.street}<br />
 								{websiteSettings.contactInformation.address.city}, {websiteSettings.contactInformation.address.postalCode}<br />
 								{websiteSettings.contactInformation.address.country}
 							</p>
 						</div>
-
 					</div>
 				</div>
 			</div>
