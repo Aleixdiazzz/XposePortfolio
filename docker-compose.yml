@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  astro:
+    build: .
+    container_name: xpose-astro
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - xpose-network
+    # Don't expose ports directly - let Caddy handle it
+    expose:
+      - "3000"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: xpose-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - xpose-network
+    depends_on:
+      - astro
+
+networks:
+  xpose-network:
+    driver: bridge
+
+volumes:
+  caddy_data:
+    external: false
+  caddy_config:
+    external: false

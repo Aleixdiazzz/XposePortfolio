@@ -1,23 +1,54 @@
-# Use Node 20 Alpine image
-FROM node:20-alpine
+# Build stage
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if exists)
+# Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --production
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci
 
-# Copy rest of your source code
+# Copy source code
 COPY . .
 
-# Build Astro app
+# Build the application
 RUN npm run build
 
-# Expose port 3000 (default for Node adapter)
+# Production stage
+FROM node:20-alpine AS runtime
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
+
+# Create app user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S astro -u 1001
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy built application from builder stage
+COPY --from=builder --chown=astro:nodejs /app/dist ./dist
+
+# Switch to non-root user
+USER astro
+
+# Expose port
 EXPOSE 3000
+
+# Set environment to production
+ENV NODE_ENV=production
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
 
 # Start the server
 CMD ["node", "dist/server/entry.mjs"]
