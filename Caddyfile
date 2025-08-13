@@ -1,3 +1,4 @@
+# Main website
 xpose.es {
     reverse_proxy astro:4321
     
@@ -29,7 +30,73 @@ xpose.es {
     }
 }
 
-# Redirect www to non-www
+# API subdomain
+api.xpose.es {
+    reverse_proxy java-container:8080
+    
+    # Enable compression
+    encode gzip
+    
+    # CORS headers for API
+    header {
+        Access-Control-Allow-Origin *
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type, Authorization"
+        # Security headers
+        Strict-Transport-Security max-age=31536000;
+        X-Content-Type-Options nosniff
+    }
+    
+    # Handle preflight requests
+    @cors_preflight method OPTIONS
+    respond @cors_preflight 200
+    
+    # Log access
+    log {
+        output file /var/log/caddy/api-access.log
+        format json
+    }
+}
+
+# MinIO subdomain
+minio.xpose.es {
+    reverse_proxy minio:9000
+    
+    # Enable compression
+    encode gzip
+    
+    # MinIO specific headers
+    header {
+        # Security headers
+        Strict-Transport-Security max-age=31536000;
+        X-Content-Type-Options nosniff
+        # CORS for MinIO
+        Access-Control-Allow-Origin *
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, HEAD, OPTIONS"
+        Access-Control-Allow-Headers "Range, Content-Type, Authorization, x-amz-*"
+        Access-Control-Expose-Headers "ETag, x-amz-*"
+    }
+    
+    # Handle preflight requests
+    @cors_preflight method OPTIONS
+    respond @cors_preflight 200
+    
+    # Log access
+    log {
+        output file /var/log/caddy/minio-access.log
+        format json
+    }
+}
+
+# Redirect www to non-www for all subdomains
 www.xpose.es {
     redir https://xpose.es{uri} permanent
+}
+
+www.api.xpose.es {
+    redir https://api.xpose.es{uri} permanent
+}
+
+www.minio.xpose.es {
+    redir https://minio.xpose.es{uri} permanent
 }
