@@ -19,7 +19,7 @@ interface WebSiteSettings {
 	};
 }
 
-const response = await fetch('http://46.62.130.142:8080/website-settings/contact');
+const response = await fetch('http://java-container:8080/website-settings/contact');
 const websiteSettings: WebSiteSettings = await response.json();
 ---
 
@@ -93,4 +93,3 @@ const websiteSettings: WebSiteSettings = await response.json();
 		</script>
 	</body>
 </html>
-
