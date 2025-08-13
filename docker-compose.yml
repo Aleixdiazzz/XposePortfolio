@@ -11,7 +11,7 @@ services:
       - xpose-network
     # Don't expose ports directly - let Caddy handle it
     expose:
-      - "3000"
+      - "4321"
 
   caddy:
     image: caddy:2-alpine

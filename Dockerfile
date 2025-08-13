@@ -42,7 +42,7 @@ COPY --from=builder --chown=astro:nodejs /app/dist ./dist
 USER astro
 
 # Expose port
-EXPOSE 3000
+EXPOSE 4321
 
 # Set environment to production
 ENV NODE_ENV=production

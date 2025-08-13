@@ -1,5 +1,5 @@
 xpose.es {
-    reverse_proxy astro:3000
+    reverse_proxy astro:4321
     
     # Enable compression
     encode gzip
