@@ -7,7 +7,7 @@ import node from '@astrojs/node';
 export default defineConfig({
   output: 'server',
   image: {
-    domains: ['minioApi.xpose.es'],
+    domains: ['minio.xpose.es'],
   },
   server: {
     host: true  // ← This tells Astro to listen on 0.0.0.0

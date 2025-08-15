@@ -67,10 +67,10 @@ interface WebSiteSettings {
 	};
 }
 
-const collectionsResponse = await fetch('http://java-container:8080/series/public-collections');
+const collectionsResponse = await fetch('https://api.xpose.es/series/public-collections');
 const collections: Collection[] = await collectionsResponse.json();
 
-const settingsResponse = await fetch('http://java-container:8080/website-settings/contact');
+const settingsResponse = await fetch('https://api.xpose.es/website-settings/contact');
 const websiteSettings: WebSiteSettings = await settingsResponse.json();
 ---
 
@@ -126,7 +126,7 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 				  
 					  return (
 						<a href={`/collections/${collection.serie.id}`} class="group block">
-						  <article class="w-full max-w-[900px] mx-auto flex flex-col sm:flex-row sm:h-[350px] mb-8 sm:mb-16">
+						  <article class="w-full max-w-[900px] mx-auto flex flex-col sm:flex-row sm:h-[350px]">
 							{isEven ? (
 							  <>
 								{/* Mobile: Image first, then text */}

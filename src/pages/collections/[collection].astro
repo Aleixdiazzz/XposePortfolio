@@ -74,7 +74,7 @@ if (!collectionId) {
 
 let collections: Collection[];
 try {
-	const collectionsResponse = await fetch('http://java-container:8080/series/public-collections');
+	const collectionsResponse = await fetch('https://api.xpose.es/series/public-collections');
 	if (!collectionsResponse.ok) {
 		throw new Error(`HTTP error! status: ${collectionsResponse.status}`);
 	}
@@ -92,7 +92,7 @@ if (!collection) {
 
 let websiteSettings: WebSiteSettings;
 try {
-	const settingsResponse = await fetch('http://java-container:8080/website-settings/contact');
+	const settingsResponse = await fetch('https://api.xpose.es/website-settings/contact');
 	if (!settingsResponse.ok) {
 		throw new Error(`HTTP error! status: ${settingsResponse.status}`);
 	}
