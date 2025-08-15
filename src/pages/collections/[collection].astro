@@ -1,5 +1,6 @@
 ---
 import '../../styles/global.css';
+import { Image } from 'astro:assets';
 
 interface Artist {
 	id: number;
@@ -109,6 +110,9 @@ try {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
 		<title>{collection.serie.name} - {websiteSettings.name}</title>
+		
+		<!-- Preload hero image for faster loading -->
+		<link rel="preload" as="image" href={collection.imageUrl} />
 	</head>
 	<body class="bg-white dark:bg-black">
 
@@ -148,10 +152,15 @@ try {
 		<main class="pt-24">
 			<!-- Hero Section -->
 			<div class="relative h-screen">
-				<img 
-					src={collection.imageUrl} 
+				<Image
+					src={collection.imageUrl}
 					alt={collection.serie.name}
 					class="w-full h-full object-cover"
+					width={1920}
+					height={1080}
+					format="webp"
+					quality={90}
+					loading="eager"
 				/>
 				<div class="absolute inset-0 flex items-center">
 					<div class="mx-auto px-6 w-full">
@@ -191,10 +200,15 @@ try {
 												<span class="absolute top-4 left-4 z-10 text-sm text-white/80">
 													{(index + 1).toString().padStart(2, '0')}
 												</span>
-												<img
+												<Image
 													src={asset.url}
 													alt={asset.name}
 													class="gallery-image w-full h-full object-cover"
+													width={isFullWidth ? 1200 : 600}
+													height={500}
+													format="webp"
+													quality={85}
+													loading="lazy"
 												/>
 											</div>
 										</div>
@@ -205,10 +219,15 @@ try {
 													<span class="absolute top-4 left-4 z-10 text-sm text-white/80">
 														{(index + 2).toString().padStart(2, '0')}
 													</span>
-													<img
+													<Image
 														src={collection.assets[index + 1].url}
 														alt={collection.assets[index + 1].name}
 														class="gallery-image w-full h-full object-cover"
+														width={600}
+														height={500}
+														format="webp"
+														quality={85}
+														loading="lazy"
 													/>
 												</div>
 											</div>

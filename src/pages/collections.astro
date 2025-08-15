@@ -131,10 +131,15 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 							  <>
 								{/* Mobile: Image first, then text */}
 								<div class="w-full h-64 sm:hidden overflow-hidden mb-4">
-								  <img
+								  <Image
 									src={collection.imageUrl}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
+									width={400}
+									height={256}
+									format="webp"
+									quality={80}
+									loading="lazy"
 								  />
 								</div>
 								<div class="w-full sm:w-1/2 flex flex-col justify-center px-4 sm:px-8 text-left sm:text-right sm:items-end">
@@ -149,10 +154,15 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 								</div>
 								{/* Desktop: Image Right */}
 								<div class="hidden sm:block sm:w-1/2 overflow-hidden">
-								  <img
+								  <Image
 									src={collection.imageUrl}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
+									width={450}
+									height={350}
+									format="webp"
+									quality={85}
+									loading="lazy"
 								  />
 								</div>
 							  </>
@@ -160,18 +170,28 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 							  <>
 								{/* Mobile: Image first, then text */}
 								<div class="w-full h-64 sm:hidden overflow-hidden mb-4">
-								  <img
+								  <Image
 									src={collection.imageUrl}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
+									width={400}
+									height={256}
+									format="webp"
+									quality={80}
+									loading="lazy"
 								  />
 								</div>
 								{/* Desktop: Image Left */}
 								<div class="hidden sm:block sm:w-1/2 overflow-hidden">
-								  <img
+								  <Image
 									src={collection.imageUrl}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
+									width={450}
+									height={350}
+									format="webp"
+									quality={85}
+									loading="lazy"
 								  />
 								</div>
 								<div class="w-full sm:w-1/2 flex flex-col justify-center px-4 sm:px-8 text-left">

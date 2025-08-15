@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-
+import { Image } from 'astro:assets';
 
 interface WebSiteSettings {
 	id: number;
@@ -30,7 +30,10 @@ const websiteSettings: WebSiteSettings = await response.json();
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
-		<title>{websiteSettings.name}</title>
+		<title>{websiteSettings.websiteName} - Contact</title>
+		
+		<!-- Preload critical images -->
+		<link rel="preload" as="image" href="/assets/contact.jpg" />
 	</head>
 	<body class="bg-white dark:bg-black">
 	<!-- Header -->
@@ -66,16 +69,34 @@ const websiteSettings: WebSiteSettings = await response.json();
 	</header>
 
 		<!-- Main Content -->
-		<main class="h-screen flex flex-col lg:flex-row relative">
+		<main class="min-h-screen flex flex-col lg:flex-row dark:bg-black relative">
 			<!-- Mobile Background Image -->
 			<div class="lg:hidden fixed inset-0 z-0">
-				<div class="h-full bg-[url('/assets/contact.jpg')] bg-cover bg-center"></div>
+				<Image
+					src="/assets/contact.jpg"
+					alt="Contact Background"
+					class="h-full w-full object-cover"
+					width={800}
+					height={1200}
+					format="webp"
+					quality={80}
+					loading="eager"
+				/>
 				<div class="absolute inset-0 bg-black/40"></div>
 			</div>
 
 			<!-- Desktop Left Side - Image -->
 			<div class="hidden lg:block lg:w-1/2 h-screen">
-				<div class="h-full bg-[url('/assets/contact.jpg')] bg-cover bg-center"></div>
+				<Image
+					src="/assets/contact.jpg"
+					alt="Contact Background"
+					class="h-full w-full object-cover"
+					width={960}
+					height={1080}
+					format="webp"
+					quality={85}
+					loading="eager"
+				/>
 			</div>
 
 			<!-- Contact Info -->

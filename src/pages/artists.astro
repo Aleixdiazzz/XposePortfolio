@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 
 interface Artist {
 	id: number;
@@ -51,9 +52,12 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
-		<title>Artists - {websiteSettings.name}</title>
+		<title>{websiteSettings.websiteName} - Artists</title>
+		
+		<!-- Preload critical images -->
+		<link rel="preload" as="image" href="/assets/artists.jpg" />
 	</head>
-	<body class="bg-white">
+	<body class="bg-white dark:bg-black">
 
 	<!-- Header -->
 	<header class="fixed top-0 left-0 right-0 z-50 ">
@@ -91,11 +95,16 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 		<main class="min-h-screen flex flex-col lg:flex-row dark:bg-black relative">
 			<!-- Mobile Background Image -->
 			<div class="lg:hidden fixed inset-0 z-0">
-				<img 
+				<Image 
 					id="mobileArtistImage"
-					src='assets/artists.jpg'
+					src="/assets/artists.jpg"
 					alt="Artist Portrait"
 					class="w-full h-full object-cover"
+					width={800}
+					height={1200}
+					format="webp"
+					quality={80}
+					loading="eager"
 				/>
 				<div class="absolute inset-0 bg-black/40"></div>
 			</div>
@@ -126,11 +135,16 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 			<!-- Desktop Artist Image -->
 			<div class="hidden lg:block lg:w-1/2 lg:fixed lg:right-0 lg:top-0 lg:h-screen">
 				<div class="h-full w-full">
-					<img 
+					<Image 
 						id="artistImage"
-						src='assets/artists.jpg'
+						src="/assets/artists.jpg"
 						alt="Artist Portrait"
 						class="w-full h-full object-cover transition-opacity duration-500"
+						width={960}
+						height={1080}
+						format="webp"
+						quality={85}
+						loading="eager"
 					/>
 				</div>
 			</div>
@@ -140,16 +154,30 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 			document.addEventListener('DOMContentLoaded', () => {
 				const artistCards = document.querySelectorAll('.artist-card');
 				const artistImage = document.getElementById('artistImage');
-				const artistsData = JSON.stringify(artists);
+				const mobileArtistImage = document.getElementById('mobileArtistImage');
+				
+				// Preload artist images for better performance
+				const imageCache = new Map();
+				
+				function preloadImage(src) {
+					if (!imageCache.has(src)) {
+						const img = new Image();
+						img.src = src;
+						imageCache.set(src, img);
+					}
+					return imageCache.get(src);
+				}
 
 				artistCards.forEach(card => {
 					card.addEventListener('mouseenter', () => {
 						const artistId = card.getAttribute('data-artist-id');
-						const artist = artistsData.find(a => a.id === parseInt(artistId));
-						if (artist && artistImage) {
+						// Note: You'll need to fetch artist data with image URLs from your API
+						// This is a placeholder for when you have artist images
+						if (artistImage) {
 							artistImage.style.opacity = '0';
 							setTimeout(() => {
-								artistImage.src = artist.image;
+								// Replace with actual artist image URL from API
+								artistImage.src = '/assets/artists.jpg';
 								artistImage.style.opacity = '1';
 							}, 300);
 						}
