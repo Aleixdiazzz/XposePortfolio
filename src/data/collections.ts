@@ -119,7 +119,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/intoTheMist/1.jpg",
+				"url": "/public/media/collections/intoTheMist/1.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -159,7 +159,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/intoTheMist/2.jpg",
+				"url": "/public/media/collections/intoTheMist/2.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -199,7 +199,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/intoTheMist/3.jpg",
+				"url": "/public/media/collections/intoTheMist/3.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -239,7 +239,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/intoTheMist/4.jpg",
+				"url": "/public/media/collections/intoTheMist/4.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -279,7 +279,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/intoTheMist/5.jpg",
+				"url": "/public/media/collections/intoTheMist/5.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -319,7 +319,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/intoTheMist/6.jpg",
+				"url": "/public/media/collections/intoTheMist/6.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -354,7 +354,7 @@ export const collections: Collection[] = [
 				]
 			}
 		],
-		"imageUrl": "/src/media/collections/intoTheMist/1.jpg"
+		"imageUrl": "/public/media/collections/intoTheMist/1.jpg"
 	},
 	{
 		"serie": {
@@ -392,7 +392,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/1.jpg",
+				"url": "/public/media/collections/theUnforgiving/1.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -432,7 +432,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/2.jpg",
+				"url": "/public/media/collections/theUnforgiving/2.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -472,7 +472,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/3.jpg",
+				"url": "/public/media/collections/theUnforgiving/3.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -512,7 +512,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/4.jpg",
+				"url": "/public/media/collections/theUnforgiving/4.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -552,7 +552,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/5.jpg",
+				"url": "/public/media/collections/theUnforgiving/5.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -592,7 +592,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/6.jpg",
+				"url": "/public/media/collections/theUnforgiving/6.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -632,7 +632,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/7.jpg",
+				"url": "/public/media/collections/theUnforgiving/7.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -672,7 +672,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/8.jpg",
+				"url": "/public/media/collections/theUnforgiving/8.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -712,7 +712,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/9.jpg",
+				"url": "/public/media/collections/theUnforgiving/9.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -752,7 +752,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/10.jpg",
+				"url": "/public/media/collections/theUnforgiving/10.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -792,7 +792,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/11.jpg",
+				"url": "/public/media/collections/theUnforgiving/11.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -832,7 +832,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/12.jpg",
+				"url": "/public/media/collections/theUnforgiving/12.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -872,7 +872,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/13.jpg",
+				"url": "/public/media/collections/theUnforgiving/13.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -912,7 +912,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/14.jpg",
+				"url": "/public/media/collections/theUnforgiving/14.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -952,7 +952,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/15.jpg",
+				"url": "/public/media/collections/theUnforgiving/15.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -992,7 +992,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/16.jpg",
+				"url": "/public/media/collections/theUnforgiving/16.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1032,7 +1032,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/17.jpg",
+				"url": "/public/media/collections/theUnforgiving/17.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1072,7 +1072,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/18.jpg",
+				"url": "/public/media/collections/theUnforgiving/18.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1112,7 +1112,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/19.jpg",
+				"url": "/public/media/collections/theUnforgiving/19.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1152,7 +1152,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/20.jpg",
+				"url": "/public/media/collections/theUnforgiving/20.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1192,7 +1192,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/21.jpg",
+				"url": "/public/media/collections/theUnforgiving/21.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1232,7 +1232,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/22.jpg",
+				"url": "/public/media/collections/theUnforgiving/22.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1272,7 +1272,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/23.jpg",
+				"url": "/public/media/collections/theUnforgiving/23.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1312,7 +1312,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/24.jpg",
+				"url": "/public/media/collections/theUnforgiving/24.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1352,7 +1352,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/25.jpg",
+				"url": "/public/media/collections/theUnforgiving/25.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1392,7 +1392,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/26.jpg",
+				"url": "/public/media/collections/theUnforgiving/26.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1432,7 +1432,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/27.jpg",
+				"url": "/public/media/collections/theUnforgiving/27.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1472,7 +1472,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/28.jpg",
+				"url": "/public/media/collections/theUnforgiving/28.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1512,7 +1512,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/29.jpg",
+				"url": "/public/media/collections/theUnforgiving/29.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1552,7 +1552,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theUnforgiving/30.jpg",
+				"url": "/public/media/collections/theUnforgiving/30.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1587,7 +1587,7 @@ export const collections: Collection[] = [
 				]
 			}
 		],
-		"imageUrl": "/src/media/collections/theUnforgiving/1.jpg"
+		"imageUrl": "/public/media/collections/theUnforgiving/1.jpg"
 	},
 	{
 		"serie": {
@@ -1625,7 +1625,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/unnamed/1.jpg",
+				"url": "/public/media/collections/unnamed/1.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1665,7 +1665,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/unnamed/2.jpg",
+				"url": "/public/media/collections/unnamed/2.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1705,7 +1705,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/unnamed/3.jpg",
+				"url": "/public/media/collections/unnamed/3.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1740,7 +1740,7 @@ export const collections: Collection[] = [
 				]
 			}
 		],
-		"imageUrl": "/src/media/collections/unnamed/1.jpg"
+		"imageUrl": "/public/media/collections/unnamed/1.jpg"
 	},
 	{
 		"serie": {
@@ -1778,7 +1778,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/1.jpg",
+				"url": "/public/media/collections/theStills/1.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1818,7 +1818,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/2.jpg",
+				"url": "/public/media/collections/theStills/2.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1858,7 +1858,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/3.jpg",
+				"url": "/public/media/collections/theStills/3.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1898,7 +1898,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/4.jpg",
+				"url": "/public/media/collections/theStills/4.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1938,7 +1938,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/5.jpg",
+				"url": "/public/media/collections/theStills/5.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -1978,7 +1978,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/6.jpg",
+				"url": "/public/media/collections/theStills/6.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -2018,7 +2018,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/7.jpg",
+				"url": "/public/media/collections/theStills/7.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -2058,7 +2058,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/8.jpg",
+				"url": "/public/media/collections/theStills/8.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -2098,7 +2098,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/9.jpg",
+				"url": "/public/media/collections/theStills/9.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -2138,7 +2138,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/theStills/10.jpg",
+				"url": "/public/media/collections/theStills/10.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -2173,7 +2173,7 @@ export const collections: Collection[] = [
 				]
 			}
 		],
-		"imageUrl": "/src/media/collections/theStills/1.jpg"
+		"imageUrl": "/public/media/collections/theStills/1.jpg"
 	},
 	{
 		"serie": {
@@ -2211,7 +2211,7 @@ export const collections: Collection[] = [
 				"description": "",
 				"type": "",
 				"comment": null,
-				"url": "/src/media/collections/velvetNostalgia/1.jpg",
+				"url": "/public/media/collections/velvetNostalgia/1.jpg",
 				"active": false,
 				"authors": [],
 				"series": [
@@ -2246,6 +2246,6 @@ export const collections: Collection[] = [
 				]
 			}
 		],
-		"imageUrl": "/src/media/collections/velvetNostalgia/1.jpg"
+		"imageUrl": "/public/media/collections/velvetNostalgia/1.jpg"
 	}
 ];
