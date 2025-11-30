@@ -20,8 +20,25 @@ interface Artist {
 	};
 }
 
-const response = await fetch('https://api.xpose.es/artists');
-const artists: Artist[] = await response.json();
+const artists: Artist[] = [
+	{
+		id: 1,
+		name: "Aleix",
+		surname: "Díaz Llabrés",
+		about: "",
+		contactInformation: {
+			email: "aleixdiaz2001@gmail.com",
+			phoneNumber: "648007507",
+			address: {
+				street: "La gruta",
+				number: "14",
+				city: "Palma de Mallorca",
+				postalCode: "07007",
+				country: "Spain"
+			}
+		}
+	}
+]
 
 
 interface WebSiteSettings {
@@ -42,8 +59,24 @@ interface WebSiteSettings {
 	};
 }
 
-const settingsResponse = await fetch('https://api.xpose.es/website-settings/contact');
-const websiteSettings: WebSiteSettings = await settingsResponse.json();
+const websiteSettings: WebSiteSettings = {
+	id: 1,
+	name: 'Xpose',
+	websiteName: 'Aleix Díaz Llabrés',
+	favIconUrl: '',
+	contactInformation: {
+		email: 'aleixdiazzz@gmail.com',
+		phoneNumber: '648007507',
+		address: {
+			street: 'La Gruta',
+			number: '14',
+			city: 'Palma De Mallorca',
+			postalCode: '07007',
+			country: 'Spain'
+		},
+	}
+
+}
 
 ---
 
@@ -142,7 +175,7 @@ const websiteSettings: WebSiteSettings = await settingsResponse.json();
 						class="w-full h-full object-cover transition-opacity duration-500"
 						width={1920}
 						height={1080}
-						format="webp"
+						format="webp" 
 						quality={100}
 						loading="eager"
 					/>
