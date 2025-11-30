@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { websiteSettings as websiteSettingsFromData } from '../data/collections';
 
 interface WebSiteSettings {
 	id: number;
@@ -19,24 +20,7 @@ interface WebSiteSettings {
 	};
 }
 
-const websiteSettings: WebSiteSettings = {
-	id: 1,
-	name: 'Xpose',
-	websiteName: 'Aleix Díaz Llabrés',
-	favIconUrl: '',
-	contactInformation: {
-		email: 'aleixdiazzz@gmail.com',
-		phoneNumber: '648007507',
-		address: {
-			street: 'La Gruta',
-			number: '14',
-			city: 'Palma De Mallorca',
-			postalCode: '07007',
-			country: 'Spain'
-		},
-	}
-
-}
+const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 ---
 
 <html lang="en">

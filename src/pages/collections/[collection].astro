@@ -2,6 +2,7 @@
 import '../../styles/global.css';
 import { Image } from 'astro:assets';
 import { collections, type Collection } from '../../data/collections';
+import { websiteSettings as websiteSettingsFromData } from '../../data/collections';
 import { createSlug } from '../../utils/slug';
 
 interface WebSiteSettings {
@@ -36,23 +37,7 @@ export function getStaticPaths() {
 const { collection } = Astro.props;
 
 
-const websiteSettings: WebSiteSettings = {
-	id: 1,
-	name: 'Xpose',
-	websiteName: 'Aleix Díaz Llabrés',
-	favIconUrl: 'https://minio.xpose.es/assets/favicon.ico',
-	contactInformation: {
-		email: 'aleixdiaz2001@gmail.com',
-		phoneNumber: '648007507',
-		address: {
-			street: 'La gruta',
-			number: '14',
-			city: 'Palma de Mallorca',
-			postalCode: '07007',
-			country: 'Spain'
-		}
-	}
-};
+const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 ---
 
 <html lang="en">
