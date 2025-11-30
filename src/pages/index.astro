@@ -65,10 +65,21 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 	</header>
 
 		<!-- Main Content -->
-		<main class="h-screen relative">
-			<!-- Background Image with Overlay -->
+		<main class="h-screen relative overflow-hidden">
+			<!-- Background Video -->
+			<video 
+				autoplay
+				loop 
+				playsinline
+				class="absolute inset-0 w-full h-full object-cover"
+			>
+				<source src="/src/media/collections/vfx/vfx.webm" type="video/webm" />
+				<!-- Fallback for browsers that don't support video -->
+				Your browser does not support the video tag.
+			</video>
+			
+			<!-- Overlay -->
 			<div class="absolute inset-0 bg-black/30 z-10"></div>
-			<div class="absolute inset-0 bg-[url('http://minio.xpose.es/images/back.jpg')] bg-cover bg-center"></div>
 			
 			<!-- Title -->
 			<div class="relative z-20 h-full flex items-center justify-center">
