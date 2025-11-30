@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+import { websiteSettings as websiteSettingsFromData } from '../data/collections';
+
+interface WebSiteSettings {
+    id: number;
+    name: string;
+    websiteName: string;
+    favIconUrl: string;
+    contactInformation: {
+        email: string;
+        phoneNumber: string;
+        address: {
+            street: string;
+            number: string;
+            city: string;
+            postalCode: string;
+            country: string;
+        };
+    };
+}
+
+const websiteSettings: WebSiteSettings = websiteSettingsFromData;
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
+    <title>{websiteSettings.name}</title>
+</head>
+<body class="bg-black">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 ">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+        <div class="flex justify-between items-center">
+            <a href="/" class="text-white text-lg sm:text-xl tracking-wide">{websiteSettings.name}</a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="/collections" class="text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+                <a href="/vfx" class="text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
+                <a href="/artists" class="text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+                <a href="/contact" class="text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+            <div class="flex flex-col space-y-4 pt-4">
+                <a href="/collections" class="text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+                <a href="/vfx" class="text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
+                <a href="/artists" class="text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
+                <a href="/contact" class="text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="h-screen relative overflow-hidden">
+    <!-- Background Video -->
+    <video
+            id="background-video"
+            autoplay
+            loop
+            playsinline
+            class="absolute inset-0 w-full h-full object-cover"
+    >
+        <source src="/media/collections/vfx/vfx.webm" type="video/webm" />
+        <!-- Fallback for browsers that don't support video -->
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
+
+    <!-- Title -->
+    <div class="relative z-20 h-full flex items-center justify-center">
+        <a class="title-font text-3xl md:text-3xl lg:text-3xl text-white text-center" href="/collections">
+            Under Construction
+        </a>
+    </div>
+</main>
+
+<!-- Mobile Menu JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Mute video only on mobile devices
+        const video = document.getElementById('background-video') as HTMLVideoElement;
+        if (video) {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                video.muted = true;
+            }
+        }
+    });
+</script>
+</body>
+</html>
