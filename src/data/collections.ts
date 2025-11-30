@@ -1,9 +1,4 @@
----
-import '../styles/global.css';
-import { Image } from 'astro:assets';
-import { createSlug } from '../utils/slug';
-
-interface Artist {
+export interface Artist {
 	id: number;
 	name: string;
 	surname: string;
@@ -24,7 +19,7 @@ interface Artist {
 	};
 }
 
-interface Serie {
+export interface Serie {
 	id: number;
 	name: string;
 	description: string;
@@ -32,7 +27,7 @@ interface Serie {
 	artists: Artist[];
 }
 
-interface Asset {
+export interface Asset {
 	id: number;
 	name: string;
 	description: string;
@@ -44,31 +39,18 @@ interface Asset {
 	series: Serie[];
 }
 
-interface Collection {
+export interface Collection {
 	serie: Serie;
 	assets: Asset[];
 	imageUrl: string;
 }
 
-interface WebSiteSettings {
-	id: number;
-	name: string;
-	websiteName: string;
-	favIconUrl: string;
-	contactInformation: {
-		email: string;
-		phoneNumber: string;
-		address: {
-			street: string;
-			number: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-	};
-}
+// INSTRUCTIONS: Copy the collections array from collections.astro (lines 70-2236)
+// and paste it here, replacing this comment.
+// It should start with: export const collections: Collection[] = [
+// and end with: ];
 
-const collections: Collection[] = [
+export const collections: Collection[] = [
 	{
 		"serie": {
 			"id": 1,
@@ -2234,179 +2216,4 @@ const collections: Collection[] = [
 		],
 		"imageUrl": "https://minio.xpose.es/assets/a033e38c-f4a7-4f0f-adb3-c78bda2a62ec-DSCF0672.jpg"
 	}
-]
-const websiteSettings: WebSiteSettings = {
-	id: 1,
-	name: 'Xpose',
-	websiteName: 'Aleix Díaz Llabrés',
-	favIconUrl: '',
-	contactInformation: {
-		email: 'aleixdiazzz@gmail.com',
-		phoneNumber: '648007507',
-		address: {
-			street: 'La Gruta',
-			number: '14',
-			city: 'Palma De Mallorca',
-			postalCode: '07007',
-			country: 'Spain'
-		},
-	}
-
-}
----
-
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
-		<title>Collections - {websiteSettings.name}</title>
-	</head>
-	<body class="bg-white dark:bg-black">
-		<!-- Header -->
-		<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-sm">
-			<nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
-				<div class="flex justify-between items-center">
-					<a href="/" class="text-black dark:text-white text-lg sm:text-xl tracking-wide">{websiteSettings.name}</a>
-					
-					<!-- Desktop Navigation -->
-					<div class="hidden md:flex space-x-8">
-						<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
-						<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
-						<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
-					</div>
-					
-					<!-- Mobile Menu Button -->
-					<button id="mobile-menu-button" class="md:hidden text-black dark:text-white">
-						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-						</svg>
-					</button>
-				</div>
-				
-				<!-- Mobile Navigation Menu -->
-				<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
-					<div class="flex flex-col space-y-4 pt-4">
-						<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
-						<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
-						<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
-					</div>
-				</div>
-			</nav>
-		</header>
-
-		<!-- Main Content -->
-		<main class="pt-20 sm:pt-32 pb-16 sm:pb-32" style="margin-bottom: 50px;">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6">
-				<h1 class="title-font text-2xl sm:text-4xl mb-12 sm:mb-24 dark:text-white">Collections</h1>
-				
-				<div class="w-full space-y-8 sm:space-y-0">
-					{collections.map((collection, index) => {
-					  const isEven = index % 2 === 0;
-					  const textAlignment = isEven ? "sm:text-right sm:items-end" : "sm:text-left sm:items-right";
-				  
-					  return (
-						<a href={`/collections/${createSlug(collection.serie.name)}`} class="group block">
-						  <article class="w-full max-w-[900px] mx-auto flex flex-col sm:flex-row sm:h-[350px]">
-							{isEven ? (
-							  <>
-								{/* Mobile: Image first, then text */}
-								<div class="w-full h-64 sm:hidden overflow-hidden mb-4">
-								  <Image
-									src={collection.imageUrl}
-									alt={collection.serie.name}
-									class="h-full w-full object-cover"
-									width={1920}
-									height={1280}
-									format="webp"
-									quality={100}
-									loading="lazy"
-								  />
-								</div>
-								<div class="w-full sm:w-1/2 flex flex-col justify-center px-4 sm:px-8 text-left sm:text-right sm:items-end">
-								  <h2 class="text-xl sm:text-2xl dark:text-white mb-2">{collection.serie.name}</h2>
-								  <div class="mt-2 sm:mt-4">
-								    <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-								      {collection.serie.artists.map((artist, i) => (
-								        `${artist.name} ${artist.surname}${i < collection.serie.artists.length - 1 ? ', ' : ''}`
-								      ))}
-								    </p>
-								  </div>
-								</div>
-								{/* Desktop: Image Right */}
-								<div class="hidden sm:block sm:w-1/2 overflow-hidden">
-								  <Image
-									src={collection.imageUrl}
-									alt={collection.serie.name}
-									class="h-full w-full object-cover"
-									width={1920}
-									height={1400}
-									format="webp"
-									quality={100}
-									loading="lazy"
-								  />
-								</div>
-							  </>
-							) : (
-							  <>
-								{/* Mobile: Image first, then text */}
-								<div class="w-full h-64 sm:hidden overflow-hidden mb-4">
-								  <Image
-									src={collection.imageUrl}
-									alt={collection.serie.name}
-									class="h-full w-full object-cover"
-									width={1920}
-									height={1280}
-									format="webp"
-									quality={100}
-									loading="lazy"
-								  />
-								</div>
-								{/* Desktop: Image Left */}
-								<div class="hidden sm:block sm:w-1/2 overflow-hidden">
-								  <Image
-									src={collection.imageUrl}
-									alt={collection.serie.name}
-									class="h-full w-full object-cover"
-									width={1920}
-									height={1400}
-									format="webp"
-									quality={100}
-									loading="lazy"
-								  />
-								</div>
-								<div class="w-full sm:w-1/2 flex flex-col justify-center px-4 sm:px-8 text-left">
-								  <h2 class="text-xl sm:text-2xl dark:text-white mb-2">{collection.serie.name}</h2>
-								  <div class="mt-2 sm:mt-4">
-								    <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-								      {collection.serie.artists.map((artist, i) => (
-								        `${artist.name} ${artist.surname}${i < collection.serie.artists.length - 1 ? ', ' : ''}`
-								      ))}
-								    </p>
-								  </div>
-								</div>
-							  </>
-							)}
-						  </article>
-						</a>
-					  );
-					})}
-				  </div>
-			</div>
-		</main>
-
-		<!-- Mobile Menu JavaScript -->
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				const mobileMenuButton = document.getElementById('mobile-menu-button');
-				const mobileMenu = document.getElementById('mobile-menu');
-				
-				if (mobileMenuButton && mobileMenu) {
-					mobileMenuButton.addEventListener('click', function() {
-						mobileMenu.classList.toggle('hidden');
-					});
-				}
-			});
-		</script>
-	</body>
-</html>
+];

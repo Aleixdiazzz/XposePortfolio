@@ -1,53 +1,8 @@
 ---
 import '../../styles/global.css';
 import { Image } from 'astro:assets';
-
-interface Artist {
-	id: number;
-	name: string;
-	surname: string;
-	artisticName: string;
-	about: string;
-	contactInformation: {
-		id: number;
-		email: string;
-		phoneNumber: string;
-		address: {
-			id: number;
-			street: string;
-			number: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-	};
-}
-
-interface Serie {
-	id: number;
-	name: string;
-	description: string;
-	active: boolean;
-	artists: Artist[];
-}
-
-interface Asset {
-	id: number;
-	name: string;
-	description: string;
-	type: string;
-	comment: string | null;
-	url: string;
-	active: boolean;
-	authors: Artist[];
-	series: Serie[];
-}
-
-interface Collection {
-	serie: Serie;
-	assets: Asset[];
-	imageUrl: string;
-}
+import { collections, type Collection } from '../../data/collections';
+import { createSlug } from '../../utils/slug';
 
 interface WebSiteSettings {
 	id: number;
@@ -67,41 +22,37 @@ interface WebSiteSettings {
 	};
 }
 
-const { collection: collectionId } = Astro.params;
+// Enable static prerendering for this dynamic route
+export const prerender = true;
 
-if (!collectionId) {
-	return Astro.redirect('/404');
+// This function generates all the static paths for the collection pages
+export function getStaticPaths() {
+	return collections.map((collection) => ({
+		params: { collection: createSlug(collection.serie.name) },
+		props: { collection },
+	}));
 }
 
-let collections: Collection[];
-try {
-	const collectionsResponse = await fetch('https://api.xpose.es/series/public-collections');
-	if (!collectionsResponse.ok) {
-		throw new Error(`HTTP error! status: ${collectionsResponse.status}`);
+const { collection } = Astro.props;
+
+
+const websiteSettings: WebSiteSettings = {
+	id: 1,
+	name: 'Xpose',
+	websiteName: 'Aleix Díaz Llabrés',
+	favIconUrl: 'https://minio.xpose.es/assets/favicon.ico',
+	contactInformation: {
+		email: 'aleixdiaz2001@gmail.com',
+		phoneNumber: '648007507',
+		address: {
+			street: 'La gruta',
+			number: '14',
+			city: 'Palma de Mallorca',
+			postalCode: '07007',
+			country: 'Spain'
+		}
 	}
-	collections = await collectionsResponse.json();
-} catch (error) {
-	console.error('Error fetching collections:', error);
-	return Astro.redirect('/404');
-}
-
-const collection = collections.find(c => c.serie.id.toString() === collectionId);
-
-if (!collection) {
-	return Astro.redirect('/404');
-}
-
-let websiteSettings: WebSiteSettings;
-try {
-	const settingsResponse = await fetch('https://api.xpose.es/website-settings/contact');
-	if (!settingsResponse.ok) {
-		throw new Error(`HTTP error! status: ${settingsResponse.status}`);
-	}
-	websiteSettings = await settingsResponse.json();
-} catch (error) {
-	console.error('Error fetching website settings:', error);
-	return Astro.redirect('/404');
-}
+};
 ---
 
 <html lang="en">
