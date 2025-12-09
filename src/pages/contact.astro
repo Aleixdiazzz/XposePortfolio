@@ -3,25 +3,7 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import { websiteSettings as websiteSettingsFromData } from '../data/collections';
 
-interface WebSiteSettings {
-	id: number;
-	name: string;
-	websiteName: string;
-	favIconUrl: string;
-	contactInformation: {
-		email: string;
-		phoneNumber: string;
-		address: {
-			street: string;
-			number: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-	};
-}
-
-const websiteSettings: WebSiteSettings = websiteSettingsFromData;
+const websiteSettings = websiteSettingsFromData;
 
 ---
 
@@ -46,7 +28,6 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 				<div class="hidden md:flex space-x-8">
 					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
 					<a href="/vfx" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
-					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
 					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 
@@ -63,7 +44,6 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 				<div class="flex flex-col space-y-4 pt-4">
 					<a href="/collections" class="text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
 					<a href="/vfx" class="text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
-					<a href="/artists" class="text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
 					<a href="/contact" class="text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 			</div>
@@ -125,7 +105,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 							<h2 class="text-xs sm:text-sm uppercase tracking-widest mb-2 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400">Location</h2>
 							<p class="text-white lg:text-black lg:dark:text-white text-sm sm:text-base">
 								{websiteSettings.contactInformation.address.number} {websiteSettings.contactInformation.address.street}<br />
-								{websiteSettings.contactInformation.address.city}, {websiteSettings.contactInformation.address.postalCode}<br />
+								{websiteSettings.contactInformation.address.city} {websiteSettings.contactInformation.address.postalCode}<br />
 								{websiteSettings.contactInformation.address.country}
 							</p>
 						</div>

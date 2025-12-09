@@ -14,12 +14,12 @@ interface WebSiteSettings {
 	favIconUrl: string;
 	contactInformation: {
 		email: string;
-		phoneNumber: string;
+		phoneNumber?: string;
 		address: {
-			street: string;
-			number: string;
+			street?: string;
+			number?: string;
 			city: string;
-			postalCode: string;
+			postalCode?: string;
 			country: string;
 		};
 	};
@@ -79,12 +79,11 @@ export const websiteSettings: WebSiteSettings = {
 	favIconUrl: '/assets/favicon.png',
 	contactInformation: {
 		email: 'aleixdiazzz@gmail.com',
-		phoneNumber: '648007507',
+		phoneNumber: '666666666',
 		address: {
-			street: 'La Gruta',
-			number: '14',
+			street: 'Some Street',
+			number: '13',
 			city: 'Palma De Mallorca',
-			postalCode: '07007',
 			country: 'Spain'
 		},
 	}

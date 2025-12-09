@@ -5,23 +5,6 @@ import { processedCollections as collections, type Collection } from '../../data
 import { websiteSettings as websiteSettingsFromData } from '../../data/collections';
 import { createSlug } from '../../utils/slug';
 
-interface WebSiteSettings {
-	id: number;
-	name: string;
-	websiteName: string;
-	favIconUrl: string;
-	contactInformation: {
-		email: string;
-		phoneNumber: string;
-		address: {
-			street: string;
-			number: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-	};
-}
 
 // Enable static prerendering for this dynamic route
 export const prerender = true;
@@ -37,7 +20,7 @@ export function getStaticPaths() {
 const { collection } = Astro.props;
 
 
-const websiteSettings: WebSiteSettings = websiteSettingsFromData;
+const websiteSettings = websiteSettingsFromData;
 ---
 
 <html lang="en">
@@ -62,7 +45,6 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 				<div class="hidden md:flex space-x-8">
 					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
 					<a href="/vfx" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
-					<a href="/artists" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
 					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 
@@ -79,7 +61,6 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 				<div class="flex flex-col space-y-4 pt-4">
 					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
 					<a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
-					<a href="/vfx" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Artists</a>
 					<a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
 				</div>
 			</div>
