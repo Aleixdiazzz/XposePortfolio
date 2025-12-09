@@ -1,7 +1,7 @@
 ---
 import '../../styles/global.css';
 import { Image } from 'astro:assets';
-import { collections, type Collection } from '../../data/collections';
+import { processedCollections as collections, type Collection } from '../../data/collections';
 import { websiteSettings as websiteSettingsFromData } from '../../data/collections';
 import { createSlug } from '../../utils/slug';
 
@@ -48,7 +48,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 		<title>{collection.serie.name} - {websiteSettings.name}</title>
 		
 		<!-- Preload hero image for faster loading -->
-		<link rel="preload" as="image" href={collection.imageUrl} />
+		<link rel="preload" as="image" href={(collection.imageUrl as ImageMetadata).src} />
 	</head>
 	<body class="bg-white dark:bg-black">
 
@@ -91,7 +91,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 			<!-- Hero Section -->
 			<div class="relative h-screen">
 				<Image
-					src={collection.imageUrl}
+					src={collection.imageUrl as ImageMetadata}
 					alt={collection.serie.name}
 					class="w-full h-full object-cover"
 					width={2560}
@@ -139,7 +139,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 													{(index + 1).toString().padStart(2, '0')}
 												</span>
 												<Image
-													src={asset.url}
+													src={asset.url as ImageMetadata}
 													alt={asset.name}
 													class="gallery-image w-full h-full object-cover"
 													width={isFullWidth ? 2560 : 1920}
@@ -158,7 +158,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData;
 														{(index + 2).toString().padStart(2, '0')}
 													</span>
 													<Image
-														src={collection.assets[index + 1].url}
+														src={collection.assets[index + 1].url as ImageMetadata}
 														alt={collection.assets[index + 1].name}
 														class="gallery-image w-full h-full object-cover"
 														width={1920}

@@ -1,3 +1,12 @@
+// Import all images from assets/collections
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/collections/**/*.{jpg,jpeg,png,webp}', { eager: true });
+
+// Helper function to get image from path
+function getImage(path: string) {
+	const imagePath = `/src/assets${path.replace('/media', '')}`;
+	return images[imagePath]?.default;
+}
+
 interface WebSiteSettings {
 	id: number;
 	name: string;
@@ -51,7 +60,7 @@ export interface Asset {
 	description: string;
 	type: string;
 	comment: string | null;
-	url: string;
+	url: string | ImageMetadata;
 	active: boolean;
 	authors: Artist[];
 	series: Serie[];
@@ -60,7 +69,7 @@ export interface Asset {
 export interface Collection {
 	serie: Serie;
 	assets: Asset[];
-	imageUrl: string;
+	imageUrl: string | ImageMetadata;
 }
 
 export const websiteSettings: WebSiteSettings = {
@@ -2249,3 +2258,13 @@ export const collections: Collection[] = [
 		"imageUrl": "/media/collections/velvetNostalgia/1.jpg"
 	}
 ];
+
+// Process collections to convert URL strings to ImageMetadata
+export const processedCollections: Collection[] = collections.map(collection => ({
+	...collection,
+	imageUrl: getImage(collection.imageUrl as string) || collection.imageUrl,
+	assets: collection.assets.map(asset => ({
+		...asset,
+		url: getImage(asset.url as string) || asset.url
+	}))
+}));

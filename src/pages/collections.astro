@@ -1,77 +1,13 @@
 ---
 import '../styles/global.css';
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { createSlug } from '../utils/slug';
-import { collections as collectionsFromData } from '../data/collections';
+import { processedCollections as collectionsFromData } from '../data/collections';
 import { websiteSettings as websiteSettingsFromData } from '../data/collections';
 
-interface Artist {
-	id: number;
-	name: string;
-	surname: string;
-	artisticName: string;
-	about: string;
-	contactInformation: {
-		id: number;
-		email: string;
-		phoneNumber: string;
-		address: {
-			id: number;
-			street: string;
-			number: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-	};
-}
-
-interface Serie {
-	id: number;
-	name: string;
-	description: string;
-	active: boolean;
-	artists: Artist[];
-}
-
-interface Asset {
-	id: number;
-	name: string;
-	description: string;
-	type: string;
-	comment: string | null;
-	url: string;
-	active: boolean;
-	authors: Artist[];
-	series: Serie[];
-}
-
-interface Collection {
-	serie: Serie;
-	assets: Asset[];
-	imageUrl: string;
-}
-
-interface WebSiteSettings {
-	id: number;
-	name: string;
-	websiteName: string;
-	favIconUrl: string;
-	contactInformation: {
-		email: string;
-		phoneNumber: string;
-		address: {
-			street: string;
-			number: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-	};
-}
-
-const collections: Collection[] = collectionsFromData;
-const websiteSettings: WebSiteSettings = websiteSettingsFromData
+const collections = collectionsFromData;
+const websiteSettings = websiteSettingsFromData
 ---
 
 <html lang="en">
@@ -124,8 +60,6 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData
 				<div class="w-full space-y-8 sm:space-y-0">
 					{collections.map((collection, index) => {
 					  const isEven = index % 2 === 0;
-					  const textAlignment = isEven ? "sm:text-right sm:items-end" : "sm:text-left sm:items-right";
-				  
 					  return (
 						<a href={`/collections/${createSlug(collection.serie.name)}`} class="group block">
 						  <article class="w-full max-w-[900px] mx-auto flex flex-col sm:flex-row sm:h-[350px]">
@@ -134,7 +68,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData
 								{/* Mobile: Image first, then text */}
 								<div class="w-full h-64 sm:hidden overflow-hidden mb-4">
 								  <Image
-									src={collection.imageUrl}
+									src={collection.imageUrl as ImageMetadata}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
 									width={1920}
@@ -157,7 +91,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData
 								{/* Desktop: Image Right */}
 								<div class="hidden sm:block sm:w-1/2 overflow-hidden">
 								  <Image
-									src={collection.imageUrl}
+									src={collection.imageUrl as ImageMetadata}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
 									width={1920}
@@ -173,7 +107,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData
 								{/* Mobile: Image first, then text */}
 								<div class="w-full h-64 sm:hidden overflow-hidden mb-4">
 								  <Image
-									src={collection.imageUrl}
+									src={collection.imageUrl as ImageMetadata}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
 									width={1920}
@@ -186,7 +120,7 @@ const websiteSettings: WebSiteSettings = websiteSettingsFromData
 								{/* Desktop: Image Left */}
 								<div class="hidden sm:block sm:w-1/2 overflow-hidden">
 								  <Image
-									src={collection.imageUrl}
+									src={collection.imageUrl as ImageMetadata}
 									alt={collection.serie.name}
 									class="h-full w-full object-cover"
 									width={1920}
