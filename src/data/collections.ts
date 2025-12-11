@@ -1599,6 +1599,934 @@ export const collections: Collection[] = [
 	},
 	{
 		"serie": {
+			"id": 6,
+			"name": "Velvet Nostalgia",
+			"description": "There are times when loneliness is pure — you can taste it.\n" +
+				"It tastes like metal, like the silver of her earrings.\n" +
+				"How can anyone love and hate the same thing at the same time?\n" +
+				"\n" +
+				"There are times where pain is solid, you can touch it. It burns your palms black, but leaves you ice cold if you let go.\n" +
+				"\n" +
+				"There are times when desperation is bright — you can see it.\n" +
+				"It looks like shadows finally seizing the light,\n" +
+				"like vampires ruling the daylight sky.\n" +
+				"\n" +
+				"So when loneliness is pure,\n" +
+				"when pain is solid,\n" +
+				"when desperation is blindingly bright,\n" +
+				"I’ll still be able to meet your gaze.\n" +
+				"I’ll look into your eyes,\n" +
+				"and I’ll give you my final goodbye.",
+			"active": true,
+			"artists": [
+				{
+					"id": 1,
+					"name": "Aleix",
+					"surname": "Díaz Llabrés",
+					"artisticName": "",
+					"about": "",
+					"contactInformation": {
+						"id": 1,
+						"email": "aleixdiaz2001@gmail.com",
+						"phoneNumber": "648007507",
+						"address": {
+							"id": 1,
+							"street": "La gruta",
+							"number": "14",
+							"city": "Palma de Mallorca",
+							"postalCode": "07007",
+							"country": "Spain"
+						}
+					}
+				}
+			]
+		},
+		"assets": [
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/1.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/2.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/3.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/4.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/5.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/6.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/7.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/8.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/9.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/10.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/11.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/12.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/13.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/14.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/15.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/16.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/17.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/18.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/19.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/20.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/21.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 84,
+				"name": "DSCF0672.jpg",
+				"description": "",
+				"type": "",
+				"comment": null,
+				"url": "/media/collections/velvetNostalgia/22.jpg",
+				"active": false,
+				"authors": [],
+				"series": [
+					{
+						"id": 6,
+						"name": "Velvet Nostalgia",
+						"description": "",
+						"active": true,
+						"artists": [
+							{
+								"id": 1,
+								"name": "Aleix",
+								"surname": "Díaz Llabrés",
+								"artisticName": "",
+								"about": "",
+								"contactInformation": {
+									"id": 1,
+									"email": "aleixdiaz2001@gmail.com",
+									"phoneNumber": "648007507",
+									"address": {
+										"id": 1,
+										"street": "La gruta",
+										"number": "14",
+										"city": "Palma de Mallorca",
+										"postalCode": "07007",
+										"country": "Spain"
+									}
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"imageUrl": "/media/collections/velvetNostalgia/1.jpg"
+	},
+	{
+		"serie": {
 			"id": 4,
 			"name": "Unnamed",
 			"description": "",
@@ -2182,79 +3110,6 @@ export const collections: Collection[] = [
 			}
 		],
 		"imageUrl": "/media/collections/theStills/1.jpg"
-	},
-	{
-		"serie": {
-			"id": 6,
-			"name": "Velvet Nostalgia",
-			"description": "",
-			"active": true,
-			"artists": [
-				{
-					"id": 1,
-					"name": "Aleix",
-					"surname": "Díaz Llabrés",
-					"artisticName": "",
-					"about": "",
-					"contactInformation": {
-						"id": 1,
-						"email": "aleixdiaz2001@gmail.com",
-						"phoneNumber": "648007507",
-						"address": {
-							"id": 1,
-							"street": "La gruta",
-							"number": "14",
-							"city": "Palma de Mallorca",
-							"postalCode": "07007",
-							"country": "Spain"
-						}
-					}
-				}
-			]
-		},
-		"assets": [
-			{
-				"id": 84,
-				"name": "DSCF0672.jpg",
-				"description": "",
-				"type": "",
-				"comment": null,
-				"url": "/media/collections/velvetNostalgia/1.jpg",
-				"active": false,
-				"authors": [],
-				"series": [
-					{
-						"id": 6,
-						"name": "Velvet Nostalgia",
-						"description": "",
-						"active": true,
-						"artists": [
-							{
-								"id": 1,
-								"name": "Aleix",
-								"surname": "Díaz Llabrés",
-								"artisticName": "",
-								"about": "",
-								"contactInformation": {
-									"id": 1,
-									"email": "aleixdiaz2001@gmail.com",
-									"phoneNumber": "648007507",
-									"address": {
-										"id": 1,
-										"street": "La gruta",
-										"number": "14",
-										"city": "Palma de Mallorca",
-										"postalCode": "07007",
-										"country": "Spain"
-									}
-								}
-							}
-						]
-					}
-				]
-			}
-		],
-		"imageUrl": "/media/collections/velvetNostalgia/1.jpg"
 	}
 ];
 
