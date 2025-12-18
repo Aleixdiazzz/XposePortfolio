@@ -72,28 +72,14 @@ const websiteSettings = websiteSettingsFromData
                 <video 
                     id="video-player"
                     class="w-full h-full object-contain cursor-pointer"
+                    controls
+                    controlslist="nodownload noremoteplayback noplaybackrate noduration"
                     preload="metadata"
                 >
                     <source src={vfxVideo} type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
-                
-                <!-- Play/Pause Button -->
-                <button id="play-pause-btn" class="absolute bottom-4 left-4 text-white/80 hover:text-white transition-all opacity-0 group-hover:opacity-100">
-                    <svg id="play-icon" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <svg id="pause-icon" class="w-8 h-8 hidden" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-                    </svg>
-                </button>
-                
-                <!-- Fullscreen Button -->
-                <button id="fullscreen-btn" class="absolute bottom-4 right-4 text-white/80 hover:text-white transition-all opacity-0 group-hover:opacity-100">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-                    </svg>
-                </button>
+
             </div>
         </div>
 
@@ -113,37 +99,6 @@ const websiteSettings = websiteSettingsFromData
                 mobileMenu.classList.toggle('hidden');
             });
         }
-
-        const video = document.getElementById('video-player') as HTMLVideoElement;
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const playIcon = document.getElementById('play-icon');
-        const pauseIcon = document.getElementById('pause-icon');
-        const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-        if (!video) return;
-
-        function togglePlayPause() {
-            if (video.paused) {
-                video.play();
-                playIcon?.classList.add('hidden');
-                pauseIcon?.classList.remove('hidden');
-            } else {
-                video.pause();
-                playIcon?.classList.remove('hidden');
-                pauseIcon?.classList.add('hidden');
-            }
-        }
-
-        playPauseBtn?.addEventListener('click', togglePlayPause);
-        video.addEventListener('click', togglePlayPause);
-
-        fullscreenBtn?.addEventListener('click', function() {
-            if (!document.fullscreenElement) {
-                video.parentElement?.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        });
     });
 </script>
 </body>
