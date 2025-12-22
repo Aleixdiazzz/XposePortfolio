@@ -145,12 +145,42 @@ sudo certbot renew --dry-run
 
 After making changes to your Astro site:
 
-```bash
-docker stop astro-container
-docker rm astro-container
-docker build -t astro-app .
-docker run -d -p 4321:3000 --name astro-container astro-app
-```
+### On Your Local Machine:
+
+1. **Commit and push your changes:**
+   ```bash
+   git add .
+   git commit -m "Your update message"
+   git push
+   ```
+
+### On Your VPS:
+
+1. **Navigate to your project directory:**
+   ```bash
+   cd /path/to/xposeFrontEnd
+   ```
+
+2. **Pull the latest changes:**
+   ```bash
+   git pull
+   ```
+
+3. **Rebuild and restart the containers:**
+   ```bash
+   docker compose -f docker-compose.static.yml down
+   docker compose -f docker-compose.static.yml up -d --build
+   ```
+
+4. **Check the logs to verify deployment:**
+   ```bash
+   docker compose -f docker-compose.static.yml logs -f
+   ```
+
+5. **Verify the site is working:**
+   - Visit https://xpose.es
+   - Check that all pages load correctly
+   - Verify SSL is working
 
 ---
 
