@@ -1601,13 +1601,14 @@ export const collections: Collection[] = [
 		"serie": {
 			"id": 6,
 			"name": "Velvet Nostalgia",
-			"description": "There are times when loneliness is pure — you can taste it.\n" +
+			"description": "These are times where loneliness is pure — you can taste it.\n" +
 				"It tastes like metal, like the silver of her earrings.\n" +
 				"How can anyone love and hate the same thing at the same time?\n" +
 				"\n" +
-				"There are times where pain is solid, you can touch it. It burns your palms black, but leaves you ice cold if you let go.\n" +
+				"These are times where pain is solid - you can touch it.\n" +
+				"It burns your palms black, but leaves you ice cold if you let go.\n" +
 				"\n" +
-				"There are times when desperation is bright — you can see it.\n" +
+				"These are times where desperation is bright — you can see it.\n" +
 				"It looks like shadows finally seizing the light,\n" +
 				"like vampires ruling the daylight sky.\n" +
 				"\n" +
