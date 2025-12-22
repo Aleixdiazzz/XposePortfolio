@@ -6,11 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "start": "node ./dist/server/entry.mjs"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.2.2",
     "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/vite": "^4.1.6",
     "astro": "^5.7.12",

@@ -1,0 +1,31 @@
+# Build stage
+FROM node:20-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build the static site
+RUN npm run build
+
+# Production stage - use Caddy to serve static files
+FROM caddy:2-alpine
+
+# Copy built static files from builder
+COPY --from=builder /app/dist /usr/share/caddy
+
+# Copy Caddyfile for static serving
+COPY Caddyfile.static /etc/caddy/Caddyfile
+
+# Expose ports
+EXPOSE 80 443
+
+# Caddy will automatically start and serve files

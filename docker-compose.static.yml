@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.static
+    container_name: xpose-static
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - xpose-network
+
+networks:
+  xpose-network:
+    external: true
+
+volumes:
+  caddy_data:
+    external: false
+  caddy_config:
+    external: false
