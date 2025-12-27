@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import { websiteSettings as websiteSettingsFromData } from '../data/collections';
+import vfxVideo from '../assets/collections/vfx/flocks.webm';
+
+const websiteSettings = websiteSettingsFromData
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
+    <title>VFX - {websiteSettings.name}</title>
+</head>
+<body class="bg-white dark:bg-black">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-sm">
+    <nav class="mx-auto px-4 sm:px-6 py-4 sm:py-8">
+        <div class="flex justify-between items-center">
+            <a href="/" class="text-black dark:text-white text-lg sm:text-xl tracking-wide">{websiteSettings.name}</a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+                <a href="/vfx" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
+                <a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-black dark:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex flex-col space-y-4 pt-4">
+                <a href="/collections" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Collections</a>
+                <a href="/vfx" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">VFX</a>
+                <a href="/contact" class="text-black dark:text-white hover:opacity-70 transition-opacity tracking-wide">Contact</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="pt-20 sm:pt-28 pb-16 sm:pb-32 px-4 sm:px-6" style="margin-bottom: 50px;">
+    <div class="mx-auto">
+
+        <!-- Video Player Section -->
+        <div class="w-full max-w-[1300px] mx-auto">
+            <!-- Title Section -->
+            <div class="mb-8 sm:mb-12">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-black dark:text-white mb-4 title-font">
+                    Flocks
+                </h1>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm sm:text-base">
+                    <p class="text-gray-600 dark:text-gray-400 mb-2 sm:mb-0">
+                        <span class="text-black dark:text-white">Aleix Díaz Llabrés</span>
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        <span class="text-black dark:text-white">Inta - Aloka</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Video Player -->
+            <div class="relative w-full aspect-video bg-black overflow-hidden group">
+                <video
+                        id="video-player"
+                        class="w-full h-full object-contain cursor-pointer"
+                        controls
+                        controlslist="nodownload noremoteplayback noplaybackrate noduration"
+                        preload="metadata"
+                >
+                    <source src={vfxVideo} type="video/webm" />
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</main>
+
+<!-- Mobile Menu JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
+</body>
+</html>

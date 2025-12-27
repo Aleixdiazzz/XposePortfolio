@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import { websiteSettings as websiteSettingsFromData } from '../data/collections';
 import headacheVisuals from '../assets/videoImage/headacheVisuals.png';
-import clkCutToSound from '../assets/videoImage/clkCutToSound.png';
+import flockVisuals from '../assets/videoImage/flocks.png';
 
 const websiteSettings = websiteSettingsFromData
 ---
@@ -13,7 +13,7 @@ const websiteSettings = websiteSettingsFromData
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
-    <title>Collections - {websiteSettings.name}</title>
+    <title>VFX - {websiteSettings.name}</title>
 </head>
 <body class="bg-white dark:bg-black">
 <!-- Header -->
@@ -67,6 +67,24 @@ const websiteSettings = websiteSettingsFromData
                 <p>Walking Aroung</p>
                 <p>Aleix Díaz Llabrés</p>
                 <p class="text-gray-600 dark:text-gray-400">Truisms 4 Dummies - Headache</p>
+            </div>
+        </a>
+
+        <a href="/flocks" class="w-full md:w-1/2 max-w-[1000px] flex flex-col justify-center items-center text-left mx-auto mt-14 md:mt-28">
+            <Image
+                    src={flockVisuals}
+                    alt={""}
+                    class="w-full h-[500px] object-cover"
+                    width={1000}
+                    height={500}
+                    format="webp"
+                    quality={100}
+                    loading="lazy"
+            />
+            <div class="text-black dark:text-white w-full text-xs sm:text-sm mt-2">
+                <p>Flocks</p>
+                <p>Aleix Díaz Llabrés</p>
+                <p class="text-gray-600 dark:text-gray-400">Inta - Aloka</p>
             </div>
         </a>
 
