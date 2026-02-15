@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import { websiteSettings as websiteSettingsFromData } from '../data/collections';
 import headacheVisuals from '../assets/videoImage/headacheVisuals.png';
+import particlesVisuals from '../assets/videoImage/particles.jpg';
 import flockVisuals from '../assets/videoImage/flocks.png';
 
 const websiteSettings = websiteSettingsFromData
@@ -67,6 +68,24 @@ const websiteSettings = websiteSettingsFromData
                 <p>Walking Aroung</p>
                 <p>Aleix Díaz Llabrés</p>
                 <p class="text-gray-600 dark:text-gray-400">Truisms 4 Dummies - Headache</p>
+            </div>
+        </a>
+
+        <a href="/dancer" class="w-full md:w-1/2 max-w-[1000px] flex flex-col justify-center items-center text-left mx-auto mt-14 md:mt-28">
+            <Image
+                    src={particlesVisuals}
+                    alt={""}
+                    class="w-full h-[500px] object-cover"
+                    width={1000}
+                    height={500}
+                    format="webp"
+                    quality={100}
+                    loading="lazy"
+            />
+            <div class="text-black dark:text-white w-full text-xs sm:text-sm mt-2">
+                <p>Dancer</p>
+                <p>Aleix Díaz Llabrés</p>
+                <p class="text-gray-600 dark:text-gray-400">Into The Doldrums - Now Always Fades</p>
             </div>
         </a>
 
