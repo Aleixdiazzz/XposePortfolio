@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import { websiteSettings as websiteSettingsFromData } from '../data/collections';
+import Header from '../components/Header.astro';
+
+const websiteSettings = websiteSettingsFromData
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
+    <title>VFX - {websiteSettings.name}</title>
+</head>
+<body class="bg-white dark:bg-black">
+<Header siteName={websiteSettings.name} variant="solid" textColor="adaptive" />
+
+<!-- Main Content -->
+<main class="pt-20 sm:pt-28 pb-16 sm:pb-32 px-4 sm:px-6" style="margin-bottom: 50px;">
+    <div class="mx-auto">
+
+
+    </div>
+
+
+</main>
+
+<!-- Mobile Menu JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
+</body>
+</html>
