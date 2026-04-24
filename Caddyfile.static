@@ -1,115 +1,81 @@
 # Main website - serving static files
-xpose.es {
-    # Serve static files from /usr/share/caddy
+aleixdiazzz.com, www.aleixdiazzz.com {
     root * /usr/share/caddy
-    
-    # Enable file server
     file_server
-    
-    # Try files, fallback to index.html for SPA-like behavior
+
+# SPA fallback
     try_files {path} {path}/ /index.html
-    
-    # Enable compression
+
     encode gzip
-    
-    # Security headers
+
     header {
-        # Enable HSTS
-        Strict-Transport-Security max-age=31536000;
-        # Prevent MIME sniffing
-        X-Content-Type-Options nosniff
-        # Enable XSS protection
-        X-Frame-Options DENY
-        # Referrer policy
-        Referrer-Policy strict-origin-when-cross-origin
-    }
-    
-    # Cache static assets aggressively
+               Strict-Transport-Security max-age=31536000;
+               X-Content-Type-Options nosniff
+               X-Frame-Options DENY
+               Referrer-Policy strict-origin-when-cross-origin
+           }
+
+# Cache static assets aggressively
     @static {
-        path *.css *.js *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2 *.webp
-    }
+                path *.css *.js *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2 *.webp
+            }
     header @static Cache-Control "public, max-age=31536000, immutable"
-    
-    # Cache HTML files with shorter duration
+
+# Cache HTML with shorter duration
     @html {
-        path *.html
-    }
+              path *.html
+          }
     header @html Cache-Control "public, max-age=3600"
-    
-    # Log access
+
     log {
-        output file /var/log/caddy/access.log
-        format json
-    }
+            output file /var/log/caddy/access.log
+            format json
+        }
 }
 
 # API subdomain
-api.xpose.es {
+api.aleixdiazzz.com {
     reverse_proxy java-container:8080
-    
-    # Enable compression
+
     encode gzip
-    
-    # CORS headers for API
+
     header {
-        Access-Control-Allow-Origin *
-        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-        Access-Control-Allow-Headers "Content-Type, Authorization"
-        # Security headers
-        Strict-Transport-Security max-age=31536000;
-        X-Content-Type-Options nosniff
-    }
-    
-    # Handle preflight requests
+               Access-Control-Allow-Origin *
+               Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+               Access-Control-Allow-Headers "Content-Type, Authorization"
+               Strict-Transport-Security max-age=31536000;
+               X-Content-Type-Options nosniff
+           }
+
     @cors_preflight method OPTIONS
     respond @cors_preflight 200
-    
-    # Log access
+
     log {
-        output file /var/log/caddy/api-access.log
-        format json
-    }
+            output file /var/log/caddy/api-access.log
+            format json
+        }
 }
 
 # MinIO subdomain
-minio.xpose.es {
+minio.aleixdiazzz.com {
     reverse_proxy minio:9000
-    
-    # Enable compression
+
     encode gzip
-    
-    # MinIO specific headers
+
     header {
-        # Security headers
-        Strict-Transport-Security max-age=31536000;
-        X-Content-Type-Options nosniff
-        # CORS for MinIO
-        Access-Control-Allow-Origin *
-        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, HEAD, OPTIONS"
-        Access-Control-Allow-Headers "Range, Content-Type, Authorization, x-amz-*"
-        Access-Control-Expose-Headers "ETag, x-amz-*"
-    }
-    
-    # Handle preflight requests
+               Strict-Transport-Security max-age=31536000;
+               X-Content-Type-Options nosniff
+               Access-Control-Allow-Origin *
+               Access-Control-Allow-Methods "GET, POST, PUT, DELETE, HEAD, OPTIONS"
+               Access-Control-Allow-Headers "Range, Content-Type, Authorization, x-amz-*"
+               Access-Control-Expose-Headers "ETag, x-amz-*"
+           }
+
     @cors_preflight method OPTIONS
     respond @cors_preflight 200
-    
-    # Log access
+
     log {
-        output file /var/log/caddy/minio-access.log
-        format json
-    }
-}
-
-# Redirect www to non-www for all subdomains
-www.xpose.es {
-    redir https://xpose.es{uri} permanent
-}
-
-www.api.xpose.es {
-    redir https://api.xpose.es{uri} permanent
-}
-
-www.minio.xpose.es {
-    redir https://minio.xpose.es{uri} permanent
+            output file /var/log/caddy/minio-access.log
+            format json
+        }
 }
