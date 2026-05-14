@@ -11,33 +11,162 @@ const websiteSettings = websiteSettingsFromData
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href={websiteSettings.favIconUrl} />
-    <title>VFX - {websiteSettings.name}</title>
+    <title>ASCII Renderer - {websiteSettings.name}</title>
 </head>
 <body class="bg-white dark:bg-black">
 <Header siteName={websiteSettings.name} variant="solid" textColor="adaptive" />
 
-<!-- Main Content -->
-<main class="pt-20 sm:pt-28 pb-16 sm:pb-32 px-4 sm:px-6" style="margin-bottom: 50px;">
-    <div class="mx-auto">
+<main class="pt-20 sm:pt-32 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+        <canvas id="canvas"></canvas>
+        <video id="webcam" autoplay playsinline muted></video>
 
+        <!-- ASCII Output and Controls Container -->
+        <div id="content-wrapper" style="display:none">
+            <pre id="ascii" class="dark:text-white text-black"></pre>
+        </div>
 
+        <!-- Start Camera Button -->
+        <div id="button-container" class="flex justify-center items-center min-h-[60vh]">
+            <button id="start-camera">
+                <span class="px-6 py-3 bg-black dark:bg-white text-white dark:text-black hover:opacity-70 transition-opacity tracking-wide text-sm sm:text-base">
+                    Start Camera
+                </span>
+            </button>
+        </div>
     </div>
-
-
 </main>
 
-<!-- Mobile Menu JavaScript -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+        const video = document.getElementById("webcam") as HTMLVideoElement;
+        const asciiElement = document.getElementById("ascii") as HTMLPreElement;
+        const buttonContainer = document.getElementById("button-container") as HTMLDivElement;
+        const contentWrapper = document.getElementById("content-wrapper") as HTMLDivElement;
+        const startButton = document.getElementById("start-camera") as HTMLButtonElement;
 
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+        if (!canvas || !video || !asciiElement) return;
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        const charset = "@#S%?*+;:,. ";
+        const RESOLUTION = 180;
+        const CONTRAST = 2.0;
+
+        function generateAscii(): string {
+            const resolution = RESOLUTION;
+            const contrast = CONTRAST;
+
+            const scale = resolution / video.videoWidth;
+            const scaledWidth = resolution;
+            const scaledHeight = Math.floor(video.videoHeight * scale);
+
+            canvas.width = scaledWidth;
+            canvas.height = scaledHeight;
+            ctx.drawImage(video, 0, 0, scaledWidth, scaledHeight);
+
+            const imageData = ctx.getImageData(0, 0, scaledWidth, scaledHeight);
+            const pixels = imageData.data;
+            let ascii = "";
+
+            for (let y = 0; y < scaledHeight; y += 2) {
+                for (let x = 0; x < scaledWidth; x++) {
+                    const index = (y * scaledWidth + x) * 4;
+                    const r = pixels[index];
+                    const g = pixels[index + 1];
+                    const b = pixels[index + 2];
+
+                    let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                    gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
+                    gray = Math.max(0, Math.min(255, gray));
+
+                    const charIndex = charset.length - 1 - Math.floor((gray / 255) * (charset.length - 1));
+                    ascii += charset[charIndex];
+                }
+                ascii += "\n";
+            }
+
+            return ascii;
         }
+
+        function loop() {
+            if (video.videoWidth > 0 && video.videoHeight > 0) {
+                asciiElement.textContent = generateAscii();
+            }
+            requestAnimationFrame(loop);
+        }
+
+        function updateFontSize() {
+            const isMobile = window.innerWidth <= 640;
+            let fontSize: number;
+            if (isMobile) {
+                // rotated 90°: ASCII rendered-width becomes visual height
+                // target visual height = 85vh
+                fontSize = (window.innerHeight * 0.85) / (RESOLUTION * 0.55);
+            } else {
+                // fit ASCII width exactly into container
+                fontSize = contentWrapper.clientWidth / (RESOLUTION * 0.55);
+            }
+            asciiElement.style.fontSize = `${fontSize}px`;
+            asciiElement.style.lineHeight = `${fontSize}px`;
+        }
+
+        startButton.addEventListener("click", async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                video.srcObject = stream;
+                await video.play();
+
+                buttonContainer.style.display = "none";
+                contentWrapper.style.display = "flex";
+                updateFontSize();
+                loop();
+            } catch (err) {
+                const label = startButton.querySelector("span");
+                if (label) label.textContent = "Camera access denied";
+            }
+        });
+
+        window.addEventListener("resize", updateFontSize);
+
     });
 </script>
+
+<style>
+    #content-wrapper {
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 8rem);
+    }
+
+    #ascii {
+        font-family: monospace;
+        overflow: hidden;
+        white-space: pre;
+        letter-spacing: 0;
+        display: block;
+    }
+
+    :global(.dark) #ascii {
+        color: #fff;
+    }
+
+    #canvas, #webcam {
+        display: none;
+    }
+
+    @media (max-width: 640px) {
+        #content-wrapper {
+            height: 85vh;
+            overflow: hidden;
+        }
+
+        #ascii {
+            transform: rotate(90deg);
+        }
+    }
+</style>
 </body>
 </html>
