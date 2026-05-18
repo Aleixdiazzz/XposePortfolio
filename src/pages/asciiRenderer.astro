@@ -99,16 +99,7 @@ const websiteSettings = websiteSettingsFromData
         }
 
         function updateFontSize() {
-            const isMobile = window.innerWidth <= 640;
-            let fontSize: number;
-            if (isMobile) {
-                // rotated 90°: ASCII rendered-width becomes visual height
-                // target visual height = 85vh
-                fontSize = (window.innerHeight * 0.85) / (RESOLUTION * 0.55);
-            } else {
-                // fit ASCII width exactly into container
-                fontSize = contentWrapper.clientWidth / (RESOLUTION * 0.55);
-            }
+            const fontSize = contentWrapper.clientWidth / (RESOLUTION * 0.55);
             asciiElement.style.fontSize = `${fontSize}px`;
             asciiElement.style.lineHeight = `${fontSize}px`;
         }
@@ -159,12 +150,8 @@ const websiteSettings = websiteSettingsFromData
 
     @media (max-width: 640px) {
         #content-wrapper {
-            height: 85vh;
+            height: calc(100dvh - 5rem);
             overflow: hidden;
-        }
-
-        #ascii {
-            transform: rotate(90deg);
         }
     }
 </style>
