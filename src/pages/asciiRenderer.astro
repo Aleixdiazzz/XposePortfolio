@@ -17,7 +17,7 @@ const websiteSettings = websiteSettingsFromData
 <Header siteName={websiteSettings.name} variant="solid" textColor="adaptive" />
 
 <main class="pt-20 sm:pt-32 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto">
+    <div>
         <canvas id="canvas"></canvas>
         <video id="webcam" autoplay playsinline muted></video>
 
@@ -55,31 +55,43 @@ const websiteSettings = websiteSettingsFromData
         const RESOLUTION = 180;
         const CONTRAST = 2.0;
 
+        function isPortraitMode(): boolean {
+            return window.innerHeight > window.innerWidth && video.videoWidth > video.videoHeight;
+        }
+
         function generateAscii(): string {
-            const resolution = RESOLUTION;
-            const contrast = CONTRAST;
+            if (isPortraitMode()) {
+                // Landscape video → portrait ASCII via 90° CW canvas rotation
+                const scale = RESOLUTION / video.videoHeight;
+                const w = RESOLUTION;
+                const h = Math.floor(video.videoWidth * scale);
+                canvas.width = w;
+                canvas.height = h;
+                ctx.save();
+                ctx.translate(w, 0);
+                ctx.rotate(Math.PI / 2);
+                ctx.drawImage(video, 0, 0, h, w);
+                ctx.restore();
+            } else {
+                const scale = RESOLUTION / video.videoWidth;
+                canvas.width = RESOLUTION;
+                canvas.height = Math.floor(video.videoHeight * scale);
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            }
 
-            const scale = resolution / video.videoWidth;
-            const scaledWidth = resolution;
-            const scaledHeight = Math.floor(video.videoHeight * scale);
-
-            canvas.width = scaledWidth;
-            canvas.height = scaledHeight;
-            ctx.drawImage(video, 0, 0, scaledWidth, scaledHeight);
-
-            const imageData = ctx.getImageData(0, 0, scaledWidth, scaledHeight);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const pixels = imageData.data;
             let ascii = "";
 
-            for (let y = 0; y < scaledHeight; y += 2) {
-                for (let x = 0; x < scaledWidth; x++) {
-                    const index = (y * scaledWidth + x) * 4;
+            for (let y = 0; y < canvas.height; y += 2) {
+                for (let x = 0; x < canvas.width; x++) {
+                    const index = (y * canvas.width + x) * 4;
                     const r = pixels[index];
                     const g = pixels[index + 1];
                     const b = pixels[index + 2];
 
                     let gray = 0.299 * r + 0.587 * g + 0.114 * b;
-                    gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
+                    gray = ((gray / 255 - 0.5) * CONTRAST + 0.5) * 255;
                     gray = Math.max(0, Math.min(255, gray));
 
                     const charIndex = charset.length - 1 - Math.floor((gray / 255) * (charset.length - 1));
@@ -99,7 +111,20 @@ const websiteSettings = websiteSettingsFromData
         }
 
         function updateFontSize() {
-            const fontSize = contentWrapper.clientWidth / (RESOLUTION * 0.55);
+            let fontSize: number;
+            if (isPortraitMode()) {
+                const asciiRows = Math.floor(video.videoWidth * (RESOLUTION / video.videoHeight) / 2);
+                const byWidth = contentWrapper.clientWidth / (RESOLUTION * 0.55);
+                const byHeight = asciiRows > 0 ? contentWrapper.clientHeight / asciiRows : byWidth;
+                fontSize = Math.max(byWidth, byHeight);
+            } else {
+                const asciiRows = video.videoHeight > 0
+                    ? Math.floor((video.videoHeight / video.videoWidth) * RESOLUTION / 2)
+                    : Math.floor(RESOLUTION * 0.3);
+                const byWidth = contentWrapper.clientWidth / (RESOLUTION * 0.55);
+                const byHeight = contentWrapper.clientHeight / asciiRows;
+                fontSize = Math.min(byWidth, byHeight);
+            }
             asciiElement.style.fontSize = `${fontSize}px`;
             asciiElement.style.lineHeight = `${fontSize}px`;
         }
@@ -108,6 +133,7 @@ const websiteSettings = websiteSettingsFromData
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
                 video.srcObject = stream;
+                video.addEventListener('loadedmetadata', updateFontSize);
                 await video.play();
 
                 buttonContainer.style.display = "none";
@@ -150,6 +176,7 @@ const websiteSettings = websiteSettingsFromData
 
     @media (max-width: 640px) {
         #content-wrapper {
+            height: calc(100vh - 5rem);
             height: calc(100dvh - 5rem);
             overflow: hidden;
         }
