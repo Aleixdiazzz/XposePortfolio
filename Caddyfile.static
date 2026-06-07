@@ -78,7 +78,9 @@ minio.aleixdiazzz.com {
             output file /var/log/caddy/minio-access.log
             format json
         }
-}# Append to ~/astro-portfolio/XposePortfolio/Caddyfile.static, then rebuild the
+}
+
+# Append to ~/astro-portfolio/XposePortfolio/Caddyfile.static, then rebuild the
 # Caddy image (Dockerfile.static copies the Caddyfile in) and recreate the
 # container so the new domain is picked up:
 #
